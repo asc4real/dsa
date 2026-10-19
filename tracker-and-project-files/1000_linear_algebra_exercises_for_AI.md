@@ -1,0 +1,1104 @@
+# 1,000 Hands-on Linear Algebra Exercises for AI and Machine Learning
+
+**Goal:** Go from absolute foundations to applying linear algebra in machine learning, deep learning, LLMs, RAG, recommendation systems, and graph ML.
+
+## How to use this curriculum
+
+- **Recommended stack:** Python 3, NumPy, Matplotlib, SciPy, scikit-learn, and PyTorch (PyTorch is mainly needed in advanced chapters).
+- **Practice in three passes:** (1) solve a small example by hand, (2) implement with Python/NumPy, (3) verify against a trusted library or property test.
+- **Keep a lab notebook:** Record the inputs, array shapes, key equation, expected output, observed output, and one sentence explaining *why* the result makes sense.
+- **Do not skip edge cases:** Include empty/zero/constant vectors when applicable, mismatched shapes, singular matrices, very large numbers, and float32 versus float64 comparisons.
+- **Use synthetic datasets first:** Choose small numbers you can inspect; increase sizes for benchmarking only after correctness is established.
+- **Progression:** Chapters 01–10 are foundations, 11–17 are decomposition and statistical ML, 18–20 are gradient/tensor foundations, and 21–25 are AI applications and capstones.
+
+> Each item is a practical assignment, not just a topic heading. Check off an item only after you have code or a worked solution and a test or explanation.
+
+## Checklist
+
+### 01. Vector foundations and Python/NumPy fluency
+
+- [ ] **0001.** Represent a 3D point as a Python list and as a NumPy array; compare their types.
+- [ ] **0002.** Create zero, one, and constant vectors of lengths 5, 50, and 500.
+- [ ] **0003.** Build an integer vector from 1 through 20 without typing its elements.
+- [ ] **0004.** Generate 100 equally spaced floating-point values between -1 and 1.
+- [ ] **0005.** Construct a vector of ten random integers with a fixed seed.
+- [ ] **0006.** Construct a vector of 1,000 Gaussian samples; calculate its sample mean.
+- [ ] **0007.** Read and explain the shape, size, dtype, and number of dimensions of five arrays.
+- [ ] **0008.** Convert an integer vector to float32 and float64; inspect memory consumption.
+- [ ] **0009.** Extract the first, last, middle, and every third element of a vector.
+- [ ] **0010.** Reverse a vector three ways, including slicing without a Python loop.
+- [ ] **0011.** Replace every negative entry in a vector with zero.
+- [ ] **0012.** Find the positions of all values above a chosen threshold.
+- [ ] **0013.** Count positive, negative, and zero entries using Boolean masks.
+- [ ] **0014.** Compute the sum of 100 values using a loop, then using NumPy.
+- [ ] **0015.** Calculate the arithmetic mean manually using a dot product with ones.
+- [ ] **0016.** Subtract a vector's mean from every component and verify zero-centered output.
+- [ ] **0017.** Scale a vector to the range [0, 1] and handle a constant-vector edge case.
+- [ ] **0018.** Compute the elementwise difference between two equal-length vectors.
+- [ ] **0019.** Add two vectors manually and check the result against NumPy.
+- [ ] **0020.** Multiply a vector by a positive scalar, zero, and a negative scalar; explain each effect.
+- [ ] **0021.** Calculate the componentwise product of two vectors.
+- [ ] **0022.** Divide vectors componentwise; guard against zero denominators.
+- [ ] **0023.** Find the minimum, maximum, and their indices in a vector.
+- [ ] **0024.** Sort a vector ascending; recover the original index order.
+- [ ] **0025.** Select the top five vector elements with their original positions.
+- [ ] **0026.** Concatenate three vectors and verify the result's length.
+- [ ] **0027.** Split a length-30 vector into three equal parts.
+- [ ] **0028.** Reshape a length-12 vector into 3×4 and 4×3 arrays.
+- [ ] **0029.** Explain why reshaping to 5×3 fails for 12 entries; catch the exception.
+- [ ] **0030.** Distinguish a NumPy slice view from a copy by mutating the slice.
+- [ ] **0031.** Create a length-10 feature vector for one synthetic customer.
+- [ ] **0032.** Encode a toy document as a word-count vector over a fixed vocabulary.
+- [ ] **0033.** Encode a categorical variable with a one-hot vector using NumPy.
+- [ ] **0034.** Create a multi-hot vector for a document containing several tags.
+- [ ] **0035.** Compute the average of five equal-length image-feature vectors.
+- [ ] **0036.** Find the featurewise maximum among ten embedding vectors.
+- [ ] **0037.** Apply a Boolean feature mask to a 20-dimensional vector.
+- [ ] **0038.** Shuffle a vector reproducibly and restore order using saved indices.
+- [ ] **0039.** Benchmark Python-loop addition versus vectorized addition on 100,000 entries.
+- [ ] **0040.** Write `describe_vector(v)` returning dtype, shape, range, mean, and zero count.
+
+### 02. Norms, distances, and similarity
+
+- [ ] **0041.** Compute the L1 norm of [3, -4] manually and with NumPy.
+- [ ] **0042.** Compute the L2 norm of [3, -4] manually and with NumPy.
+- [ ] **0043.** Compute the infinity norm of a vector containing mixed signs.
+- [ ] **0044.** Implement `lp_norm(v, p)` for p=1, 2, 3, and 4.
+- [ ] **0045.** Demonstrate that doubling a vector doubles its L2 norm.
+- [ ] **0046.** Normalize a nonzero vector to unit L2 length.
+- [ ] **0047.** Safely normalize an all-zero vector without producing NaNs.
+- [ ] **0048.** Calculate Euclidean distance between two 2D points by hand.
+- [ ] **0049.** Implement Euclidean distance for arbitrary feature vectors.
+- [ ] **0050.** Calculate Manhattan distance between two grid locations.
+- [ ] **0051.** Calculate Chebyshev distance between two equal-length vectors.
+- [ ] **0052.** Compare L1 and L2 distances for points with a single extreme feature.
+- [ ] **0053.** Calculate squared Euclidean distance without calling `sqrt`.
+- [ ] **0054.** Derive and verify `||x-y||² = ||x||² + ||y||² - 2x·y`.
+- [ ] **0055.** Compute cosine similarity between two hand-picked 3D vectors.
+- [ ] **0056.** Compute cosine distance and explain its relation to cosine similarity.
+- [ ] **0057.** Compare cosine similarity for vectors pointing in the same direction but differing in scale.
+- [ ] **0058.** Compute dot-product similarity for those scaled vectors and contrast the ranking.
+- [ ] **0059.** Implement cosine similarity robustly for near-zero vectors.
+- [ ] **0060.** Calculate cosine similarities between one query and ten stored embeddings.
+- [ ] **0061.** Rank five documents by Euclidean distance to a query vector.
+- [ ] **0062.** Rank the same five documents by cosine similarity; explain discrepancies.
+- [ ] **0063.** Implement pairwise Euclidean distances between ten 4D points.
+- [ ] **0064.** Build a vectorized pairwise-distance matrix without nested Python loops.
+- [ ] **0065.** Verify that a Euclidean-distance matrix is symmetric with a zero diagonal.
+- [ ] **0066.** Find each point's nearest neighbor, excluding itself.
+- [ ] **0067.** Implement k-nearest-neighbor classification using only vector distances.
+- [ ] **0068.** Compare neighbor rankings before and after standardizing each feature.
+- [ ] **0069.** Plot circles representing equal L2 distance from the origin in 2D.
+- [ ] **0070.** Plot diamonds representing equal L1 distance from the origin in 2D.
+- [ ] **0071.** Plot squares representing equal L-infinity distance in 2D.
+- [ ] **0072.** Verify the triangle inequality numerically on 1,000 random vector triples.
+- [ ] **0073.** Find an example where L1 and L2 nearest neighbors differ.
+- [ ] **0074.** Calculate weighted Euclidean distance using nonnegative feature weights.
+- [ ] **0075.** Implement Hamming distance between two binary feature vectors.
+- [ ] **0076.** Calculate Jaccard similarity of two multi-hot vectors.
+- [ ] **0077.** Measure similarity between three normalized text bag-of-words vectors.
+- [ ] **0078.** Compare float32 and float64 precision for norms of tiny vectors.
+- [ ] **0079.** Explain via experiment why high-dimensional random vectors can have similar distances.
+- [ ] **0080.** Implement a reusable `top_k_similar(query, database, metric, k)` function.
+
+### 03. Dot products, angles, and vector projections
+
+- [ ] **0081.** Compute the dot product of [1,2,3] and [4,5,6] by hand.
+- [ ] **0082.** Implement a dot product with a Python loop and cross-check `np.dot`.
+- [ ] **0083.** Interpret a dot product as a weighted sum in a toy scoring system.
+- [ ] **0084.** Verify commutativity of dot products on 100 random vector pairs.
+- [ ] **0085.** Verify dot-product distributivity over vector addition.
+- [ ] **0086.** Verify scalar movement: `(cx)·y = c(x·y)` numerically.
+- [ ] **0087.** Find a 2D vector perpendicular to [3,4].
+- [ ] **0088.** Check orthogonality by computing a zero dot product.
+- [ ] **0089.** Compute the angle between two nonzero 2D vectors.
+- [ ] **0090.** Compute the angle between two random 10D vectors in degrees.
+- [ ] **0091.** Clamp cosine values to [-1,1] to avoid floating-point `arccos` errors.
+- [ ] **0092.** Draw two vectors and label their angle with Matplotlib.
+- [ ] **0093.** Compute the projection of [3,4] onto [1,0].
+- [ ] **0094.** Project a 3D vector onto an arbitrary nonzero direction.
+- [ ] **0095.** Implement a projection function robust to an invalid zero direction.
+- [ ] **0096.** Decompose a vector into parallel and perpendicular components.
+- [ ] **0097.** Verify the perpendicular residual has zero dot product with the direction.
+- [ ] **0098.** Measure projection length as the input direction rotates in 2D.
+- [ ] **0099.** Project three observations onto a unit feature vector.
+- [ ] **0100.** Interpret a learned linear-model weight vector as a scoring direction.
+- [ ] **0101.** Construct a linear decision boundary orthogonal to a 2D weight vector.
+- [ ] **0102.** Classify ten 2D points by the sign of `w·x+b`.
+- [ ] **0103.** Compute distance from a 2D point to a line `w·x+b=0`.
+- [ ] **0104.** Plot signed distances from points to a separating hyperplane.
+- [ ] **0105.** Find which examples have the largest absolute classification margin.
+- [ ] **0106.** Show why rescaling `(w,b)` does not change the classifier's boundary.
+- [ ] **0107.** Compute the cross product of two 3D vectors using NumPy.
+- [ ] **0108.** Verify that a cross product is perpendicular to both inputs.
+- [ ] **0109.** Calculate the scalar triple product of three 3D vectors.
+- [ ] **0110.** Demonstrate the right-hand rule using three coordinate basis vectors.
+- [ ] **0111.** Construct an orthonormal basis for the plane using two vectors.
+- [ ] **0112.** Project a vector onto the plane spanned by two orthonormal vectors.
+- [ ] **0113.** Calculate reconstruction error after projection onto a 1D subspace.
+- [ ] **0114.** Compare reconstruction error for three candidate projection directions.
+- [ ] **0115.** Experimentally find the direction minimizing 2D projection error.
+- [ ] **0116.** Write a function returning projection, rejection, and reconstructed sum.
+- [ ] **0117.** Derive cosine similarity from normalized dot products in code comments.
+- [ ] **0118.** Detect numerical instability when two vectors are nearly parallel.
+- [ ] **0119.** Use dot products to implement a single-neuron linear prediction.
+- [ ] **0120.** Create a 2D interactive-style plot sweeping the weight vector's angle and score.
+
+### 04. Matrix basics, shapes, indexing, and data layouts
+
+- [ ] **0121.** Create 2×2, 3×3, and 4×5 matrices with explicit values.
+- [ ] **0122.** Create an all-zero 10×20 matrix and an all-one 5×5 matrix.
+- [ ] **0123.** Create a 6×6 identity matrix and inspect its diagonal.
+- [ ] **0124.** Build a diagonal matrix from [2,4,8,16].
+- [ ] **0125.** Build an upper-triangular matrix and a lower-triangular matrix.
+- [ ] **0126.** Create a 5×5 matrix with values 1 through 25.
+- [ ] **0127.** Extract and print a particular row and column from a matrix.
+- [ ] **0128.** Extract a 3×3 patch from a 10×10 matrix.
+- [ ] **0129.** Replace the main diagonal with zeros.
+- [ ] **0130.** Replace a specified row with a new feature vector.
+- [ ] **0131.** Swap two rows using NumPy advanced indexing.
+- [ ] **0132.** Swap two columns without overwriting intermediate values.
+- [ ] **0133.** Reorder rows according to a supplied permutation array.
+- [ ] **0134.** Transpose a non-square 2×3 matrix and verify the resulting shape.
+- [ ] **0135.** Explain the distinction between `x.T` for 1D and 2D arrays.
+- [ ] **0136.** Represent a column vector explicitly as shape (n,1).
+- [ ] **0137.** Represent a row vector explicitly as shape (1,n).
+- [ ] **0138.** Convert a flat array to column-vector shape using `reshape`.
+- [ ] **0139.** Stack five observations as rows of a feature matrix.
+- [ ] **0140.** Stack five observations as columns and compare conventions.
+- [ ] **0141.** Select a subset of feature columns by their indices.
+- [ ] **0142.** Filter training examples using a Boolean label mask.
+- [ ] **0143.** Compute means of each row and each column separately.
+- [ ] **0144.** Compute standard deviations columnwise without accidentally mixing samples.
+- [ ] **0145.** Append a bias column of ones to a design matrix.
+- [ ] **0146.** Convert an RGB image into a height×width×3 tensor.
+- [ ] **0147.** Extract the red channel from an RGB image tensor.
+- [ ] **0148.** Flatten a small grayscale image into one feature vector.
+- [ ] **0149.** Unflatten a length-784 vector into a 28×28 image.
+- [ ] **0150.** Convert a batch of 16 images to a 2D feature matrix.
+- [ ] **0151.** Compare C-order and Fortran-order flattening on a 3×4 matrix.
+- [ ] **0152.** Inspect matrix strides and relate them to physical data layout.
+- [ ] **0153.** Determine whether a transpose is a view or a copy.
+- [ ] **0154.** Create a sparse-looking matrix containing 95% zeros.
+- [ ] **0155.** Count nonzero elements and calculate sparsity percentage.
+- [ ] **0156.** Find row indices containing at least one NaN.
+- [ ] **0157.** Replace NaNs in each column with that column's finite mean.
+- [ ] **0158.** Create a document-term matrix from five toy documents.
+- [ ] **0159.** Create a user-item rating matrix with missing entries marked by a mask.
+- [ ] **0160.** Write `assert_design_matrix(X, y)` validating sample and feature shapes.
+
+### 05. Matrix arithmetic and broadcasting
+
+- [ ] **0161.** Add two 2×3 matrices element by element.
+- [ ] **0162.** Subtract the per-column training means from a data matrix.
+- [ ] **0163.** Multiply all matrix entries by a scalar and inspect the result.
+- [ ] **0164.** Perform a Hadamard product of two equal-shaped matrices.
+- [ ] **0165.** Perform elementwise division with safe handling of zero values.
+- [ ] **0166.** Compute the matrix sum by rows, by columns, and overall.
+- [ ] **0167.** Compute the maximum of every column and its row index.
+- [ ] **0168.** Calculate each column's L2 norm using broadcasting.
+- [ ] **0169.** Normalize each matrix row to unit L2 length.
+- [ ] **0170.** Normalize each matrix column to unit L2 length.
+- [ ] **0171.** Contrast row-wise and column-wise standardization on a 3×4 matrix.
+- [ ] **0172.** Broadcast a feature-weight vector over all sample rows.
+- [ ] **0173.** Add one bias value per output column to a batch of logits.
+- [ ] **0174.** Demonstrate valid broadcasting between shapes (8,3) and (3,).
+- [ ] **0175.** Demonstrate valid broadcasting between shapes (8,3) and (8,1).
+- [ ] **0176.** Create a failing broadcast between shapes (8,3) and (8,) and explain it.
+- [ ] **0177.** Generate the outer sum of vectors of lengths 3 and 5.
+- [ ] **0178.** Construct a multiplication table using broadcasting, not loops.
+- [ ] **0179.** Calculate all pairwise 1D absolute differences of ten numbers.
+- [ ] **0180.** Calculate pairwise squared differences for two distinct arrays.
+- [ ] **0181.** Apply thresholding elementwise to a matrix of model scores.
+- [ ] **0182.** Implement elementwise ReLU with `np.maximum`.
+- [ ] **0183.** Implement a numerically stable elementwise sigmoid.
+- [ ] **0184.** Implement elementwise `tanh` and compare its output range with sigmoid.
+- [ ] **0185.** Center every row by its individual row mean.
+- [ ] **0186.** Center every column by its individual column mean.
+- [ ] **0187.** Standardize features while protecting zero-variance columns.
+- [ ] **0188.** Apply per-feature min-max scaling to a 100×4 matrix.
+- [ ] **0189.** Calculate a matrix of centered deviations from a reference vector.
+- [ ] **0190.** Multiply a batch of feature vectors by a learned per-feature gate.
+- [ ] **0191.** Use `np.where` to selectively replace masked matrix entries.
+- [ ] **0192.** Impute missing user-item ratings from per-item means.
+- [ ] **0193.** Compute mean absolute error between two prediction matrices.
+- [ ] **0194.** Compute mean squared error between two prediction matrices.
+- [ ] **0195.** Derive a vectorized expression for featurewise squared-error contributions.
+- [ ] **0196.** Compare looping over rows with broadcasting on a 10,000×100 matrix.
+- [ ] **0197.** Verify broadcasting creates logically repeated values without explicit tiling.
+- [ ] **0198.** Write a shape-checking wrapper for safe elementwise matrix operations.
+- [ ] **0199.** Test your wrapper on matching, broadcastable, and incompatible shapes.
+- [ ] **0200.** Create a batch-normalization-style feature transform using matrix operations.
+
+### 06. Matrix multiplication, composition, and einsum
+
+- [ ] **0201.** Multiply a 2×3 matrix by a length-3 vector by hand.
+- [ ] **0202.** Implement matrix-vector multiplication using nested Python loops.
+- [ ] **0203.** Verify your implementation against NumPy `@` on random inputs.
+- [ ] **0204.** Multiply a 2×3 matrix by a 3×4 matrix by hand.
+- [ ] **0205.** Implement generic matrix-matrix multiplication without `np.matmul`.
+- [ ] **0206.** Print every intermediate dot product used in a 2×2 matrix multiplication.
+- [ ] **0207.** Demonstrate why shapes (3,4) @ (3,4) are incompatible.
+- [ ] **0208.** Demonstrate that `AB` usually differs from `BA` with square matrices.
+- [ ] **0209.** Verify `(AB)C = A(BC)` for compatible random matrices.
+- [ ] **0210.** Verify `A(B+C) = AB+AC` numerically.
+- [ ] **0211.** Verify `(AB)^T = B^T A^T` numerically.
+- [ ] **0212.** Multiply an arbitrary matrix by an identity matrix on both sides.
+- [ ] **0213.** Multiply a matrix by a zero matrix and inspect the result.
+- [ ] **0214.** Compute an outer product using `np.outer` and broadcasting.
+- [ ] **0215.** Use an outer product to form a rank-one matrix.
+- [ ] **0216.** Compute a Gram matrix `X.T @ X` from a sample-feature matrix.
+- [ ] **0217.** Compute a sample similarity matrix `X @ X.T`.
+- [ ] **0218.** Contrast the shapes and meanings of `X.T @ X` and `X @ X.T`.
+- [ ] **0219.** Batch-predict outputs using `Y = X @ W + b`.
+- [ ] **0220.** Check all shapes in a two-layer linear network.
+- [ ] **0221.** Compose two linear layers into one equivalent weight matrix.
+- [ ] **0222.** Explain in code why adding a nonlinearity prevents simple layer collapse.
+- [ ] **0223.** Multiply a batch of matrices with `np.matmul`.
+- [ ] **0224.** Calculate batched matrix-vector products with `np.einsum`.
+- [ ] **0225.** Reimplement dot product using `np.einsum`.
+- [ ] **0226.** Reimplement outer product using `np.einsum`.
+- [ ] **0227.** Reimplement matrix multiplication using `np.einsum`.
+- [ ] **0228.** Calculate featurewise sum of products over a batch using `einsum`.
+- [ ] **0229.** Calculate per-sample quadratic forms `x.T @ A @ x` for a batch.
+- [ ] **0230.** Multiply a 2D homogeneous-coordinate transform by 2D points.
+- [ ] **0231.** Compose rotation and scaling matrices in both orders.
+- [ ] **0232.** Compute the first ten powers of a 2×2 transition matrix.
+- [ ] **0233.** Use repeated matrix multiplication to simulate a simple linear dynamical system.
+- [ ] **0234.** Implement fast matrix exponentiation by squaring for nonnegative integer powers.
+- [ ] **0235.** Benchmark `@`, `einsum`, and Python loops on medium-size matrices.
+- [ ] **0236.** Compare float32 and float64 matrix multiplication on reproducible data.
+- [ ] **0237.** Count approximate scalar multiply-adds for multiplying m×n and n×p matrices.
+- [ ] **0238.** Check whether a proposed chain-multiplication order reduces operation count.
+- [ ] **0239.** Implement a matrix multiplication dimension validator returning clear errors.
+- [ ] **0240.** Write unit tests for dot, outer, matrix-vector, and matrix-matrix products.
+
+### 07. Linear equations, elimination, and systems
+
+- [ ] **0241.** Solve `2x+3y=7` and `x-y=1` by substitution.
+- [ ] **0242.** Represent the same two equations as `Ax=b`.
+- [ ] **0243.** Solve the system using `np.linalg.solve` and verify the residual.
+- [ ] **0244.** Graph both equation lines and mark their intersection.
+- [ ] **0245.** Implement a row swap on an augmented matrix.
+- [ ] **0246.** Implement row scaling by a nonzero factor.
+- [ ] **0247.** Implement adding a multiple of one row to another.
+- [ ] **0248.** Solve a 2×2 system using Gaussian elimination written from scratch.
+- [ ] **0249.** Solve a 3×3 system with partial pivoting written from scratch.
+- [ ] **0250.** Log the pivot rows chosen during elimination.
+- [ ] **0251.** Convert a matrix to row echelon form.
+- [ ] **0252.** Implement Gauss-Jordan elimination to reduced row echelon form.
+- [ ] **0253.** Classify a system as unique, inconsistent, or infinitely many solutions.
+- [ ] **0254.** Construct a 2×2 inconsistent system and show its augmented matrix.
+- [ ] **0255.** Construct an underdetermined system and express its free variables.
+- [ ] **0256.** Solve an overdetermined system approximately with least squares.
+- [ ] **0257.** Solve an underdetermined system for a minimum-norm solution.
+- [ ] **0258.** Compute residual vectors `r=Ax-b` for three candidate solutions.
+- [ ] **0259.** Compare residual L2 norms to rank candidate solutions.
+- [ ] **0260.** Test how rounding input coefficients changes a nearly singular solution.
+- [ ] **0261.** Solve a triangular system by forward substitution.
+- [ ] **0262.** Solve an upper-triangular system by backward substitution.
+- [ ] **0263.** Verify a matrix factorization `PA=LU` for a random full-rank matrix.
+- [ ] **0264.** Use LU factors to solve two systems sharing the same A.
+- [ ] **0265.** Count operations saved when solving many right-hand sides.
+- [ ] **0266.** Create a diagonal system and solve it without a general-purpose solver.
+- [ ] **0267.** Create a block-diagonal system and solve its blocks independently.
+- [ ] **0268.** Solve a small Markov-chain stationary distribution equation.
+- [ ] **0269.** Find network flow values from a toy set of conservation equations.
+- [ ] **0270.** Fit unknown blending amounts from a linear mixture of three signals.
+- [ ] **0271.** Reconstruct missing measurements from an exactly determined sensor system.
+- [ ] **0272.** Recover 2D affine transform parameters from point correspondences.
+- [ ] **0273.** Write a function checking solution validity with absolute and relative residuals.
+- [ ] **0274.** Demonstrate that a tiny residual need not imply a tiny solution error.
+- [ ] **0275.** Compare `solve(A,b)` against explicit `inv(A)@b` for speed and accuracy.
+- [ ] **0276.** Investigate solver behavior with a singular coefficient matrix.
+- [ ] **0277.** Add regularization and solve a nearly singular linear system.
+- [ ] **0278.** Create synthetic equations with a known answer and varying noise.
+- [ ] **0279.** Batch-solve ten right-hand sides with one 10×10 matrix.
+- [ ] **0280.** Package your elimination algorithm with randomized correctness tests.
+
+### 08. Span, basis, independence, rank, and null spaces
+
+- [ ] **0281.** Check whether two 2D vectors are scalar multiples.
+- [ ] **0282.** Determine whether three given 2D vectors are linearly dependent.
+- [ ] **0283.** Check independence of the three standard basis vectors in 3D.
+- [ ] **0284.** Build a matrix from vectors as columns and compute its rank.
+- [ ] **0285.** Find the rank of an all-zero matrix.
+- [ ] **0286.** Find the rank of an identity matrix.
+- [ ] **0287.** Create a 5×4 matrix with rank exactly 2.
+- [ ] **0288.** Compute the rank of a random 5×4 matrix and predict its maximum.
+- [ ] **0289.** Show how duplicating a column affects rank.
+- [ ] **0290.** Show how adding a multiple of a column affects rank.
+- [ ] **0291.** Express [4,7] as a combination of [1,0] and [0,1].
+- [ ] **0292.** Express a target vector in a nonstandard 2D basis.
+- [ ] **0293.** Determine whether a target lies in the span of two 3D vectors.
+- [ ] **0294.** Plot the span of one nonzero vector in 2D.
+- [ ] **0295.** Plot the span of two independent vectors in 2D.
+- [ ] **0296.** Visualize a plane spanned by two vectors in 3D.
+- [ ] **0297.** Find a basis of the column space using pivot columns.
+- [ ] **0298.** Find a basis of the row space using row reduction.
+- [ ] **0299.** Compute a basis of the null space using SVD.
+- [ ] **0300.** Verify each null-space basis vector satisfies `Ax≈0`.
+- [ ] **0301.** Create a matrix with a two-dimensional null space.
+- [ ] **0302.** Check rank-nullity on ten rectangular matrices.
+- [ ] **0303.** Determine which columns of a feature matrix are redundant.
+- [ ] **0304.** Detect duplicated and perfectly correlated synthetic features.
+- [ ] **0305.** Remove redundant columns while preserving column-space rank.
+- [ ] **0306.** Find coordinates of a vector relative to a provided basis.
+- [ ] **0307.** Build a change-of-basis matrix between two 2D bases.
+- [ ] **0308.** Convert coordinates between the standard and custom bases.
+- [ ] **0309.** Verify change-of-basis round trips numerically.
+- [ ] **0310.** Construct a basis from two independent candidate vectors in 2D.
+- [ ] **0311.** Use Gram-Schmidt to convert a nonorthogonal basis into an orthogonal one.
+- [ ] **0312.** Test whether four 3D vectors can all be linearly independent.
+- [ ] **0313.** Measure numerical rank as an SVD singular-value threshold changes.
+- [ ] **0314.** Create an ill-conditioned matrix whose numerical rank is ambiguous.
+- [ ] **0315.** Compare exact rank over integers with floating-point numerical rank.
+- [ ] **0316.** Find the left null space of a rectangular matrix.
+- [ ] **0317.** Verify orthogonality of row space and null space.
+- [ ] **0318.** Verify orthogonality of column space and left null space.
+- [ ] **0319.** Construct a low-rank user-item ratings matrix from latent factors.
+- [ ] **0320.** Report rank, nullity, pivot columns, and null-space residual in one function.
+
+### 09. Linear transformations and affine geometry
+
+- [ ] **0321.** Apply identity, zero, and scalar-multiplication transformations in 2D.
+- [ ] **0322.** Apply a 2D rotation matrix to four unit-square corners.
+- [ ] **0323.** Derive the 2D rotation matrix for 90 degrees.
+- [ ] **0324.** Verify a rotation preserves Euclidean vector length.
+- [ ] **0325.** Verify a rotation preserves dot products between vectors.
+- [ ] **0326.** Apply horizontal and vertical reflection matrices.
+- [ ] **0327.** Apply a shear transformation to a square grid.
+- [ ] **0328.** Apply unequal x- and y-axis scaling to a circle.
+- [ ] **0329.** Combine rotation followed by scaling; plot transformed points.
+- [ ] **0330.** Reverse the order of rotation and scaling; compare plots.
+- [ ] **0331.** Interpret columns of a 2×2 transformation as images of basis vectors.
+- [ ] **0332.** Recover a linear transform matrix from its action on basis vectors.
+- [ ] **0333.** Apply a 3D rotation around the z-axis.
+- [ ] **0334.** Rotate points around the x-axis using a 3×3 matrix.
+- [ ] **0335.** Compose x-, y-, and z-axis 3D rotations.
+- [ ] **0336.** Verify a rotation matrix satisfies `R.T@R=I`.
+- [ ] **0337.** Construct a 2D projection matrix onto the x-axis.
+- [ ] **0338.** Build a projection matrix onto a non-axis-aligned unit vector.
+- [ ] **0339.** Check idempotence `P@P=P` for your projection matrix.
+- [ ] **0340.** Show a projection reduces a shape to a line.
+- [ ] **0341.** Find the kernel of a 2D projection transformation.
+- [ ] **0342.** Find the image/column space of a 3D-to-2D transformation.
+- [ ] **0343.** Construct a transformation that maps 3D points into 5D features.
+- [ ] **0344.** Illustrate why a bias term makes a transformation affine, not linear.
+- [ ] **0345.** Verify `T(x+y)=T(x)+T(y)` for a linear transform.
+- [ ] **0346.** Show the same property fails for a nonzero affine offset.
+- [ ] **0347.** Represent 2D translations using homogeneous 3×3 matrices.
+- [ ] **0348.** Compose a rotation and translation with homogeneous coordinates.
+- [ ] **0349.** Invert a rigid 2D transform and map points back.
+- [ ] **0350.** Represent an affine image warp with a 3×3 homogeneous matrix.
+- [ ] **0351.** Apply a small affine warp to a toy 8×8 image coordinate grid.
+- [ ] **0352.** Construct a 3D camera-coordinate scaling transform.
+- [ ] **0353.** Transform a batch of 1,000 points using matrix multiplication.
+- [ ] **0354.** Compare explicit loops and vectorized coordinate transforms.
+- [ ] **0355.** Draw a unit grid before and after a singular transformation.
+- [ ] **0356.** Compute determinant signs to identify orientation-changing transforms.
+- [ ] **0357.** Construct a transform with a one-dimensional kernel.
+- [ ] **0358.** Analyze how each transformation changes circle area.
+- [ ] **0359.** Implement `apply_affine(points, W, b)` with dimension checks.
+- [ ] **0360.** Create a gallery of five transformations with before/after plots.
+
+### 10. Orthogonality, Gram-Schmidt, and QR
+
+- [ ] **0361.** Verify two hand-picked vectors are orthogonal.
+- [ ] **0362.** Verify three standard basis vectors form an orthonormal set.
+- [ ] **0363.** Normalize an orthogonal set to make it orthonormal.
+- [ ] **0364.** Implement classical Gram-Schmidt for three vectors.
+- [ ] **0365.** Implement modified Gram-Schmidt and compare with classical Gram-Schmidt.
+- [ ] **0366.** Apply Gram-Schmidt to random 4D vectors.
+- [ ] **0367.** Check `Q.T@Q≈I` after orthonormalization.
+- [ ] **0368.** Reconstruct an input matrix from its QR decomposition.
+- [ ] **0369.** Inspect shapes of reduced QR for tall matrices.
+- [ ] **0370.** Inspect shapes of complete QR for tall matrices.
+- [ ] **0371.** Compute QR for a square full-rank matrix.
+- [ ] **0372.** Compare classical Gram-Schmidt and NumPy QR on almost-dependent vectors.
+- [ ] **0373.** Measure orthogonality error using the Frobenius norm.
+- [ ] **0374.** Solve an overdetermined least-squares problem using QR.
+- [ ] **0375.** Compare QR-based least squares with normal equations.
+- [ ] **0376.** Project a 5D vector onto the span of two orthonormal columns.
+- [ ] **0377.** Build the projector `Q@Q.T` onto a subspace.
+- [ ] **0378.** Verify the projector is symmetric.
+- [ ] **0379.** Verify the projector is idempotent.
+- [ ] **0380.** Show that residuals after orthogonal projection are orthogonal to the subspace.
+- [ ] **0381.** Use QR to find an orthonormal basis for random feature columns.
+- [ ] **0382.** Check whether a given 3×3 matrix is orthogonal.
+- [ ] **0383.** Compute inverse of an orthogonal matrix using its transpose.
+- [ ] **0384.** Demonstrate rotations and reflections as orthogonal transforms.
+- [ ] **0385.** Calculate determinants of three orthogonal matrices.
+- [ ] **0386.** Construct a Householder reflection mapping a vector toward a coordinate axis.
+- [ ] **0387.** Verify a Householder matrix is orthogonal and symmetric.
+- [ ] **0388.** Use a Householder transform to zero selected vector components.
+- [ ] **0389.** Construct a Givens rotation that zeroes one vector component.
+- [ ] **0390.** Apply successive Givens rotations to a small matrix.
+- [ ] **0391.** Explain with an experiment why orthogonality improves numerical stability.
+- [ ] **0392.** Compute QR of a 50×5 feature matrix with correlated columns.
+- [ ] **0393.** Measure conditioning of `X` versus `X.T@X`.
+- [ ] **0394.** Orthonormalize random embeddings and compare pairwise similarities.
+- [ ] **0395.** Use QR to initialize weights with orthonormal columns.
+- [ ] **0396.** Compare norms before and after multiplication by an orthogonal matrix.
+- [ ] **0397.** Generate a random orthogonal matrix using QR, correcting its sign convention.
+- [ ] **0398.** Compare classical Gram-Schmidt runtime with library QR.
+- [ ] **0399.** Unit-test QR reconstruction and orthogonality across varied shapes.
+- [ ] **0400.** Create a report comparing orthogonalization methods on noisy input matrices.
+
+### 11. Determinants, inverses, trace, and conditioning
+
+- [ ] **0401.** Calculate the determinant of a 2×2 matrix by hand.
+- [ ] **0402.** Calculate the determinant of a 3×3 matrix by cofactor expansion.
+- [ ] **0403.** Verify both determinants with `np.linalg.det`.
+- [ ] **0404.** Compute determinants of diagonal and triangular matrices.
+- [ ] **0405.** Demonstrate determinant zero when two columns are equal.
+- [ ] **0406.** Demonstrate determinant zero when one row is a multiple of another.
+- [ ] **0407.** Show that swapping two rows flips determinant sign.
+- [ ] **0408.** Show how multiplying one row by three scales the determinant.
+- [ ] **0409.** Verify `det(AB)=det(A)det(B)` numerically.
+- [ ] **0410.** Verify `det(A.T)=det(A)` numerically.
+- [ ] **0411.** Calculate determinants of 2D rotations for several angles.
+- [ ] **0412.** Calculate determinants of reflections and interpret negative sign.
+- [ ] **0413.** Compare the area of a transformed unit square with `abs(det(A))`.
+- [ ] **0414.** Compare the volume of a transformed unit cube with `abs(det(A))`.
+- [ ] **0415.** Find the inverse of a 2×2 matrix by the explicit formula.
+- [ ] **0416.** Verify `A@inv(A)≈I` on full-rank random matrices.
+- [ ] **0417.** Show a singular matrix cannot be inverted.
+- [ ] **0418.** Verify `inv(AB)=inv(B)inv(A)` when inverses exist.
+- [ ] **0419.** Compare inversion of diagonal and dense matrices.
+- [ ] **0420.** Solve `Ax=b` without constructing an inverse.
+- [ ] **0421.** Calculate trace of a square matrix manually and with NumPy.
+- [ ] **0422.** Verify `tr(A+B)=tr(A)+tr(B)`.
+- [ ] **0423.** Verify `tr(AB)=tr(BA)` for compatible products.
+- [ ] **0424.** Calculate Frobenius norm using both entries and `tr(A.T@A)`.
+- [ ] **0425.** Implement a 2-norm condition-number estimate using singular values.
+- [ ] **0426.** Measure conditioning of identity, diagonal, and Hilbert matrices.
+- [ ] **0427.** Construct matrices with prescribed singular-value ratios.
+- [ ] **0428.** Perturb the right-hand side of `Ax=b` and measure solution sensitivity.
+- [ ] **0429.** Perturb the entries of A and measure solution sensitivity.
+- [ ] **0430.** Compare solutions for well-conditioned and ill-conditioned systems.
+- [ ] **0431.** Investigate why forming normal equations squares the condition number.
+- [ ] **0432.** Compute determinant magnitude on matrices of increasing dimension.
+- [ ] **0433.** Use `np.linalg.slogdet` to avoid overflow and underflow.
+- [ ] **0434.** Calculate the log determinant of a positive-definite matrix via Cholesky.
+- [ ] **0435.** Find a matrix with determinant one but a large condition number.
+- [ ] **0436.** Compare float32 and float64 inversion residuals on a difficult matrix.
+- [ ] **0437.** Show why near-zero determinant alone is not a scale-invariant conditioning metric.
+- [ ] **0438.** Use determinant to test orientation of ordered 2D points.
+- [ ] **0439.** Implement a solver diagnostic returning condition number and residual.
+- [ ] **0440.** Write unit tests for trace, determinant identities, inverse identities, and edge cases.
+
+### 12. Eigenvalues, eigenvectors, and dynamical systems
+
+- [ ] **0441.** Verify by multiplication that a proposed vector is an eigenvector.
+- [ ] **0442.** Compute eigenvalues of a 2×2 diagonal matrix by inspection.
+- [ ] **0443.** Compute eigenvalues of a triangular matrix by inspection.
+- [ ] **0444.** Find eigenvalues and eigenvectors of a 2×2 symmetric matrix by hand.
+- [ ] **0445.** Use `np.linalg.eig` on the same matrix and compare outputs.
+- [ ] **0446.** Verify `Av≈λv` for every returned eigenpair.
+- [ ] **0447.** Sort eigenpairs by descending eigenvalue magnitude.
+- [ ] **0448.** Normalize eigenvectors and explain their sign ambiguity.
+- [ ] **0449.** Plot eigenvectors over a transformed 2D unit circle.
+- [ ] **0450.** Identify expansion and contraction directions from eigenvalues.
+- [ ] **0451.** Construct a matrix with one positive and one negative eigenvalue.
+- [ ] **0452.** Construct a 2×2 rotation with complex eigenvalues.
+- [ ] **0453.** Inspect eigenvalues of an identity matrix.
+- [ ] **0454.** Inspect eigenvalues of a rank-one outer-product matrix.
+- [ ] **0455.** Verify trace equals sum of eigenvalues for a square matrix.
+- [ ] **0456.** Verify determinant equals product of eigenvalues.
+- [ ] **0457.** Construct a matrix with repeated eigenvalues and multiple eigenvectors.
+- [ ] **0458.** Construct a defective matrix with too few independent eigenvectors.
+- [ ] **0459.** Check whether a matrix is diagonalizable from its eigenvector rank.
+- [ ] **0460.** Reconstruct a diagonalizable matrix using `V@D@inv(V)`.
+- [ ] **0461.** Use diagonalization to compute `A**n` for an integer n.
+- [ ] **0462.** Simulate repeated application of a diagonal matrix to a vector.
+- [ ] **0463.** Simulate repeated application of a non-diagonal transformation.
+- [ ] **0464.** Predict long-run growth from the dominant eigenvalue magnitude.
+- [ ] **0465.** Predict decay when every eigenvalue magnitude is below one.
+- [ ] **0466.** Construct an unstable iterative system with an eigenvalue above one in magnitude.
+- [ ] **0467.** Implement power iteration for the dominant eigenvector.
+- [ ] **0468.** Test power iteration convergence on a symmetric matrix.
+- [ ] **0469.** Measure the impact of different starting vectors on power iteration.
+- [ ] **0470.** Implement Rayleigh quotient for a proposed eigenvector.
+- [ ] **0471.** Track Rayleigh quotient over power-iteration steps.
+- [ ] **0472.** Implement inverse iteration with a shifted matrix and safe solves.
+- [ ] **0473.** Find stationary probabilities from a small stochastic transition matrix.
+- [ ] **0474.** Simulate state distributions under repeated Markov-chain steps.
+- [ ] **0475.** Compare Markov stationary distribution from iteration and eigenanalysis.
+- [ ] **0476.** Build a two-state recommendation-click transition model.
+- [ ] **0477.** Compute eigenvalues of a linearized recurrent-state update matrix.
+- [ ] **0478.** Relate eigenvalue magnitudes to exploding and vanishing linear states.
+- [ ] **0479.** Compare `eig` and `eigh` on a symmetric input.
+- [ ] **0480.** Package an eigenpair verification suite reporting residuals and reconstruction errors.
+
+### 13. Symmetric, positive-definite, and covariance matrices
+
+- [ ] **0481.** Test whether a matrix equals its transpose.
+- [ ] **0482.** Symmetrize a random square matrix using `(A+A.T)/2`.
+- [ ] **0483.** Verify eigenvalues of a real symmetric matrix are real.
+- [ ] **0484.** Verify eigenvectors from `eigh` form an orthonormal basis.
+- [ ] **0485.** Construct a positive-semidefinite matrix as `B.T@B`.
+- [ ] **0486.** Construct a strictly positive-definite matrix as `B.T@B+αI`.
+- [ ] **0487.** Evaluate `x.T@A@x` for many random vectors x.
+- [ ] **0488.** Check nonnegative quadratic forms for a PSD matrix.
+- [ ] **0489.** Create an indefinite symmetric matrix and find positive and negative quadratic forms.
+- [ ] **0490.** Plot contours of a 2D positive-definite quadratic form.
+- [ ] **0491.** Rotate its principal axes using a non-diagonal covariance matrix.
+- [ ] **0492.** Compute the eigenvalues and eigenvectors of a 2×2 covariance matrix.
+- [ ] **0493.** Create a toy dataset where the two features are positively correlated.
+- [ ] **0494.** Calculate covariance manually using centered feature vectors.
+- [ ] **0495.** Calculate covariance with matrix multiplication `Xc.T@Xc/(n-1)`.
+- [ ] **0496.** Verify manual covariance agrees with `np.cov` after choosing orientation.
+- [ ] **0497.** Compare covariance versus correlation matrices on differently scaled features.
+- [ ] **0498.** Demonstrate covariance matrix symmetry numerically.
+- [ ] **0499.** Check covariance matrix PSD using its eigenvalues.
+- [ ] **0500.** Analyze a dataset with a constant column and singular covariance.
+- [ ] **0501.** Demonstrate how duplicated features create covariance rank deficiency.
+- [ ] **0502.** Add diagonal jitter to a singular covariance matrix.
+- [ ] **0503.** Test how jitter changes the smallest eigenvalue and condition number.
+- [ ] **0504.** Compute a Cholesky decomposition of a positive-definite matrix.
+- [ ] **0505.** Reconstruct the covariance matrix from its Cholesky factor.
+- [ ] **0506.** Show Cholesky failing on a deliberately indefinite matrix.
+- [ ] **0507.** Generate correlated Gaussian samples from independent normals using Cholesky.
+- [ ] **0508.** Estimate the covariance of the simulated Gaussian samples.
+- [ ] **0509.** Whiten a 2D correlated dataset using eigendecomposition.
+- [ ] **0510.** Verify the whitened data has approximately identity covariance.
+- [ ] **0511.** Compare standard scaling and full covariance whitening.
+- [ ] **0512.** Construct a Mahalanobis-distance calculator with a stable linear solve.
+- [ ] **0513.** Compare Mahalanobis and Euclidean distances on elongated data.
+- [ ] **0514.** Plot Gaussian ellipses derived from covariance eigenvectors and eigenvalues.
+- [ ] **0515.** Compute sample correlation as cosine similarity of centered, normalized columns.
+- [ ] **0516.** Find a PSD matrix with a zero eigenvalue and explain its null direction.
+- [ ] **0517.** Compare Cholesky speed with a generic inverse on SPD matrices.
+- [ ] **0518.** Fit a Gaussian model from data and evaluate quadratic-form scores.
+- [ ] **0519.** Build a covariance diagnostic with symmetry, eigenvalues, and condition number.
+- [ ] **0520.** Write randomized tests asserting reconstructed covariance remains PSD within tolerance.
+
+### 14. Singular value decomposition (SVD) and low-rank approximation
+
+- [ ] **0521.** Compute SVD of a 2×2 matrix using NumPy.
+- [ ] **0522.** Inspect shapes of U, singular values, and Vh in reduced SVD.
+- [ ] **0523.** Inspect shapes of full SVD on a 5×3 matrix.
+- [ ] **0524.** Reconstruct A from reduced SVD and measure reconstruction error.
+- [ ] **0525.** Verify columns of U are orthonormal where applicable.
+- [ ] **0526.** Verify rows of Vh are orthonormal where applicable.
+- [ ] **0527.** Sort singular values of a matrix and plot their decay.
+- [ ] **0528.** Compute numerical rank from singular values and a chosen tolerance.
+- [ ] **0529.** Construct a rank-one matrix as an outer product.
+- [ ] **0530.** Recover a rank-one matrix using only its leading singular triplet.
+- [ ] **0531.** Approximate a random matrix at ranks k=1,2,3,4.
+- [ ] **0532.** Plot Frobenius reconstruction error versus retained rank.
+- [ ] **0533.** Plot spectral reconstruction error versus retained rank.
+- [ ] **0534.** Verify the Eckart-Young optimality claim experimentally on a small matrix.
+- [ ] **0535.** Compare truncated-SVD approximation with a random rank-k factorization.
+- [ ] **0536.** Compress a grayscale image with rank-5 SVD.
+- [ ] **0537.** Reconstruct that image with ranks 10, 25, and 50.
+- [ ] **0538.** Report storage cost for each truncated image representation.
+- [ ] **0539.** Compute percentage of squared Frobenius energy captured by top k singular values.
+- [ ] **0540.** Choose the smallest k capturing at least 95% of matrix energy.
+- [ ] **0541.** Perform SVD on a noisy low-rank synthetic matrix.
+- [ ] **0542.** Estimate underlying signal rank from its singular-value spectrum.
+- [ ] **0543.** Compare rank estimation as observation noise increases.
+- [ ] **0544.** Use the right singular vectors to identify dominant feature directions.
+- [ ] **0545.** Use the left singular vectors to identify dominant sample directions.
+- [ ] **0546.** Compute the operator 2-norm from the largest singular value.
+- [ ] **0547.** Compute Frobenius norm from the sum of squared singular values.
+- [ ] **0548.** Compute matrix condition number from largest and smallest singular values.
+- [ ] **0549.** Show singular values of A and A.T match.
+- [ ] **0550.** Show squared singular values match eigenvalues of `A.T@A`.
+- [ ] **0551.** Check orthogonality between different singular vectors numerically.
+- [ ] **0552.** Apply truncated SVD to a toy document-term count matrix.
+- [ ] **0553.** Find similar documents using low-dimensional SVD representations.
+- [ ] **0554.** Implement a simple latent-semantic-search ranking over toy sentences.
+- [ ] **0555.** Compare reconstructed user-item ratings using rank-1 through rank-5 SVD.
+- [ ] **0556.** Investigate sparse missing ratings versus true zero ratings in naive SVD.
+- [ ] **0557.** Implement SVD-based pseudoinverse with singular-value thresholding.
+- [ ] **0558.** Solve an ill-conditioned least-squares system using truncated SVD.
+- [ ] **0559.** Compare SVD decomposition of float32 versus float64 matrices.
+- [ ] **0560.** Build an image and document compression report with error-versus-rank charts.
+
+### 15. Pseudoinverse, factorizations, and matrix completion
+
+- [ ] **0561.** Compute the Moore-Penrose pseudoinverse of a tall matrix.
+- [ ] **0562.** Compute the pseudoinverse of a wide matrix.
+- [ ] **0563.** Check `A@pinv(A)@A≈A`.
+- [ ] **0564.** Check `pinv(A)@A@pinv(A)≈pinv(A)`.
+- [ ] **0565.** Check that `A@pinv(A)` is approximately symmetric.
+- [ ] **0566.** Check that `pinv(A)@A` is approximately symmetric.
+- [ ] **0567.** Solve an overdetermined system using pseudoinverse.
+- [ ] **0568.** Solve an underdetermined system using pseudoinverse.
+- [ ] **0569.** Verify the pseudoinverse solution minimizes norm among sampled feasible solutions.
+- [ ] **0570.** Compare pseudoinverse solutions under different SVD cutoffs.
+- [ ] **0571.** Apply ridge-style damping to singular values before pseudoinversion.
+- [ ] **0572.** Compare QR, SVD, and pseudoinverse on the same least-squares problem.
+- [ ] **0573.** Construct `A≈UV.T` with U of shape n×k and V of shape m×k.
+- [ ] **0574.** Reconstruct synthetic observations from known latent user and item factors.
+- [ ] **0575.** Measure squared error only on observed entries of a masked rating matrix.
+- [ ] **0576.** Derive gradients of masked squared error for U and V on paper.
+- [ ] **0577.** Implement gradient descent to fit U and V from observed ratings.
+- [ ] **0578.** Add L2 regularization to your factor-training loss.
+- [ ] **0579.** Train factorization with several latent dimensions k.
+- [ ] **0580.** Measure test error on held-out observed user-item ratings.
+- [ ] **0581.** Compare random and SVD-based initialization for factor learning.
+- [ ] **0582.** Identify rotational ambiguity in latent factors using an orthogonal transform.
+- [ ] **0583.** Use alternating least squares to update U while holding V fixed.
+- [ ] **0584.** Use alternating least squares to update V while holding U fixed.
+- [ ] **0585.** Plot ALS training loss over iterations.
+- [ ] **0586.** Compare ALS convergence with gradient descent on a toy ratings dataset.
+- [ ] **0587.** Implement nonnegative matrix factorization using multiplicative updates.
+- [ ] **0588.** Verify NMF factors remain nonnegative with nonnegative initialization.
+- [ ] **0589.** Use NMF to discover additive components in a synthetic matrix.
+- [ ] **0590.** Compare NMF components with SVD components for interpretability.
+- [ ] **0591.** Create a sparse matrix with SciPy CSR format.
+- [ ] **0592.** Multiply a sparse CSR matrix by a dense vector.
+- [ ] **0593.** Compare storage consumption of dense and sparse representations.
+- [ ] **0594.** Solve a sparse least-squares system using a SciPy iterative method.
+- [ ] **0595.** Build a rank-k approximation of a noisy user-item interaction matrix.
+- [ ] **0596.** Recommend top unrated items from the factorized score matrix.
+- [ ] **0597.** Evaluate recommendations using Recall@K on a synthetic holdout set.
+- [ ] **0598.** Explore cold-start behavior when a user has no observed ratings.
+- [ ] **0599.** Construct a rank-k matrix completion experiment with varying missingness.
+- [ ] **0600.** Summarize matrix factorization tradeoffs: rank, regularization, speed, and error.
+
+### 16. Least squares, linear models, and feature engineering
+
+- [ ] **0601.** Fit a straight line through two points by solving a 2×2 system.
+- [ ] **0602.** Fit a straight line to ten noisy points using `np.linalg.lstsq`.
+- [ ] **0603.** Construct the design matrix with a bias column.
+- [ ] **0604.** Calculate predictions as `X@w` for five examples.
+- [ ] **0605.** Compute residuals and their squared sum manually.
+- [ ] **0606.** Derive the least-squares normal equations for one feature.
+- [ ] **0607.** Implement the normal-equation solution with a stable linear solve.
+- [ ] **0608.** Compare normal-equation and QR solutions on clean synthetic data.
+- [ ] **0609.** Fit a multiple regression model with three input features.
+- [ ] **0610.** Recover known synthetic model weights in a low-noise setting.
+- [ ] **0611.** Plot predictions versus true targets for a fitted regression.
+- [ ] **0612.** Calculate MAE, MSE, and RMSE without sklearn.
+- [ ] **0613.** Calculate R-squared using NumPy.
+- [ ] **0614.** Create polynomial features `[1,x,x²,x³]` and fit them.
+- [ ] **0615.** Compare polynomial degrees 1, 3, and 10 on a noisy target.
+- [ ] **0616.** Demonstrate overfitting via a train-test split.
+- [ ] **0617.** Construct a Vandermonde matrix and inspect its condition number.
+- [ ] **0618.** Scale the polynomial input and compare conditioning.
+- [ ] **0619.** Compare regression weights before and after feature standardization.
+- [ ] **0620.** Derive how standardized regression coefficients relate to original units.
+- [ ] **0621.** Add redundant features and inspect coefficient instability.
+- [ ] **0622.** Fit a ridge-regression solution using augmented least squares.
+- [ ] **0623.** Fit ridge regression with multiple penalty strengths.
+- [ ] **0624.** Plot coefficient magnitudes as regularization increases.
+- [ ] **0625.** Calculate the singular values of a regression design matrix.
+- [ ] **0626.** Diagnose multicollinearity from singular values and condition number.
+- [ ] **0627.** Use a binary indicator variable in a design matrix.
+- [ ] **0628.** One-hot encode a three-category feature and avoid redundant dummy variables with an intercept.
+- [ ] **0629.** Add pairwise feature interactions and compare model fit.
+- [ ] **0630.** Implement weighted least squares for unequal measurement confidence.
+- [ ] **0631.** Fit robustly scaled data and compare to unscaled data containing outliers.
+- [ ] **0632.** Predict house prices using a small synthetic tabular dataset.
+- [ ] **0633.** Predict daily energy consumption from synthetic weather features.
+- [ ] **0634.** Evaluate a simple cross-validation loop for ridge strength.
+- [ ] **0635.** Measure prediction sensitivity after perturbing one training label.
+- [ ] **0636.** Derive the projection matrix `X@pinv(X)` for fitted values.
+- [ ] **0637.** Verify least-squares residuals are orthogonal to X's columns.
+- [ ] **0638.** Show why fitted values are a projection into the column space.
+- [ ] **0639.** Implement a reusable train/predict pipeline using NumPy only.
+- [ ] **0640.** Report training error, validation error, rank, and condition number for three models.
+
+### 17. Principal component analysis (PCA) and dimensionality reduction
+
+- [ ] **0641.** Generate a 2D correlated Gaussian dataset with a visible principal direction.
+- [ ] **0642.** Center the dataset and verify the per-feature means are near zero.
+- [ ] **0643.** Compute the covariance matrix by hand using matrix multiplication.
+- [ ] **0644.** Find principal directions using covariance eigendecomposition.
+- [ ] **0645.** Sort principal directions by decreasing eigenvalue.
+- [ ] **0646.** Plot the first and second principal axes on the scatterplot.
+- [ ] **0647.** Project 2D data onto its first principal component.
+- [ ] **0648.** Reconstruct the data from its 1D component scores.
+- [ ] **0649.** Plot original and reconstructed points together.
+- [ ] **0650.** Calculate mean squared reconstruction error for 1D PCA.
+- [ ] **0651.** Compute explained variance ratio for each component.
+- [ ] **0652.** Verify explained variance ratios sum to one when all components are retained.
+- [ ] **0653.** Implement PCA using SVD of the centered data matrix.
+- [ ] **0654.** Compare SVD-based PCA directions with eigendecomposition-based PCA.
+- [ ] **0655.** Explain and handle arbitrary sign flips between PCA implementations.
+- [ ] **0656.** Apply PCA to a 5D synthetic dataset and retain two components.
+- [ ] **0657.** Choose k to retain at least 90% explained variance.
+- [ ] **0658.** Plot a scree plot of component eigenvalues.
+- [ ] **0659.** Plot cumulative explained variance as k increases.
+- [ ] **0660.** Measure reconstruction error at every possible component count.
+- [ ] **0661.** Compare PCA results with and without feature standardization.
+- [ ] **0662.** Generate an outlier and observe its influence on the first component.
+- [ ] **0663.** Create a dataset with two independent latent sources and noisy observed features.
+- [ ] **0664.** Use PCA to recover its two-dimensional latent subspace.
+- [ ] **0665.** Compare PCA against randomly chosen orthogonal projection directions.
+- [ ] **0666.** Use PCA to reduce toy image vectors and reconstruct them.
+- [ ] **0667.** Visualize the leading PCA component as an image-like feature map.
+- [ ] **0668.** Use nearest neighbors on original and PCA-reduced feature vectors.
+- [ ] **0669.** Measure how neighbor identities change after strong dimensionality reduction.
+- [ ] **0670.** Train a simple classifier before and after PCA compression.
+- [ ] **0671.** Explore PCA failure on a nonlinear two-moons synthetic dataset.
+- [ ] **0672.** Verify that PCA components are orthogonal.
+- [ ] **0673.** Verify transformed component scores have diagonal sample covariance.
+- [ ] **0674.** Implement PCA whitening and test covariance of transformed data.
+- [ ] **0675.** Compare PCA whitening with ZCA whitening on a 2D dataset.
+- [ ] **0676.** Compute PCA on a sample count smaller than the feature count using SVD.
+- [ ] **0677.** Build a simple incremental covariance accumulator for streamed batches.
+- [ ] **0678.** Compare full-dataset PCA with an incremental or batched PCA implementation.
+- [ ] **0679.** Package `fit_pca`, `transform_pca`, and `inverse_transform_pca` functions.
+- [ ] **0680.** Write a mini-report on PCA variance, reconstruction, scale dependence, and limits.
+
+### 18. Matrix calculus, gradients, Jacobians, and Hessians
+
+- [ ] **0681.** Differentiate a scalar linear function `f(x)=w·x+b` by hand.
+- [ ] **0682.** Verify its gradient equals w using finite differences.
+- [ ] **0683.** Differentiate `f(x)=x.T@x` and verify gradient `2x`.
+- [ ] **0684.** Differentiate `f(x)=x.T@A@x` for arbitrary A.
+- [ ] **0685.** Verify the quadratic gradient `(A+A.T)@x` numerically.
+- [ ] **0686.** Differentiate `f(x)=0.5*||Ax-b||²` by hand.
+- [ ] **0687.** Verify gradient `A.T@(A@x-b)` using finite differences.
+- [ ] **0688.** Implement a central-difference gradient checker for vector inputs.
+- [ ] **0689.** Compare forward and central finite-difference accuracy.
+- [ ] **0690.** Study gradient-checking error versus finite-difference step size.
+- [ ] **0691.** Compute the Jacobian of a two-output linear map by hand.
+- [ ] **0692.** Compute the Jacobian of a 2D nonlinear vector-valued function.
+- [ ] **0693.** Implement a finite-difference Jacobian calculator.
+- [ ] **0694.** Verify the Jacobian of `y=Ax+b` equals A.
+- [ ] **0695.** Apply the chain rule to two composed linear maps.
+- [ ] **0696.** Apply the chain rule to a linear layer followed by ReLU.
+- [ ] **0697.** Calculate gradients of `y=w·x+b` with respect to w, x, and b.
+- [ ] **0698.** Derive the batch MSE gradient for weights of a linear regression.
+- [ ] **0699.** Compare sum-reduction and mean-reduction gradients.
+- [ ] **0700.** Compute a gradient for sigmoid cross-entropy with respect to logits.
+- [ ] **0701.** Implement the softmax Jacobian for a tiny 3-class vector.
+- [ ] **0702.** Verify the softmax Jacobian rows sum to approximately zero.
+- [ ] **0703.** Derive the gradient of a matrix Frobenius-norm loss.
+- [ ] **0704.** Differentiate `||XW-Y||_F²` with respect to W.
+- [ ] **0705.** Gradient-check the weight matrix in a multivariate linear regression.
+- [ ] **0706.** Compute the derivative of L2 weight regularization.
+- [ ] **0707.** Compute a subgradient of L1 weight regularization away from zero.
+- [ ] **0708.** Form the Hessian of a 2D quadratic objective.
+- [ ] **0709.** Check Hessian symmetry for a smooth scalar function.
+- [ ] **0710.** Compute the Hessian of least-squares loss as `X.T@X` with scaling.
+- [ ] **0711.** Inspect Hessian eigenvalues for a convex quadratic objective.
+- [ ] **0712.** Plot gradient vectors over a 2D quadratic loss surface.
+- [ ] **0713.** Use the Jacobian to locally linearize a nonlinear 2D mapping.
+- [ ] **0714.** Measure local linearization error for shrinking perturbations.
+- [ ] **0715.** Compute vector-Jacobian products without explicitly storing the full Jacobian.
+- [ ] **0716.** Compute Jacobian-vector products for a linear or elementwise map.
+- [ ] **0717.** Hand-code reverse-mode differentiation through two dense layers.
+- [ ] **0718.** Verify backpropagated gradients by numerical gradient checks.
+- [ ] **0719.** Repeat gradient checks in PyTorch using autograd as reference.
+- [ ] **0720.** Build a gradient-checking test suite for scalar, vector, and matrix parameters.
+
+### 19. Optimization, loss geometry, and regularization
+
+- [ ] **0721.** Optimize a one-dimensional quadratic by gradient descent.
+- [ ] **0722.** Plot the loss trajectory for five different learning rates.
+- [ ] **0723.** Show divergence when the learning rate is excessively large.
+- [ ] **0724.** Optimize a 2D isotropic quadratic from three starting points.
+- [ ] **0725.** Optimize an elongated quadratic with gradient descent.
+- [ ] **0726.** Plot optimization paths over contours of the elongated loss.
+- [ ] **0727.** Calculate the Hessian condition number of your quadratic.
+- [ ] **0728.** Relate poor conditioning to zig-zagging gradient updates.
+- [ ] **0729.** Implement gradient descent for a least-squares regression.
+- [ ] **0730.** Compare gradient descent weights with `np.linalg.lstsq`.
+- [ ] **0731.** Implement mini-batch stochastic gradient descent on synthetic regression data.
+- [ ] **0732.** Compare full-batch, mini-batch, and single-example gradient updates.
+- [ ] **0733.** Implement momentum and plot faster/slower convergence on a quadratic.
+- [ ] **0734.** Implement Nesterov momentum for a smooth 2D quadratic.
+- [ ] **0735.** Implement RMSProp from scratch for vector parameters.
+- [ ] **0736.** Implement Adam from scratch for vector parameters.
+- [ ] **0737.** Compare momentum, RMSProp, and Adam on the same objective.
+- [ ] **0738.** Implement L2 regularization by adding its gradient to the update.
+- [ ] **0739.** Implement proximal soft-thresholding for L1 regularization.
+- [ ] **0740.** Compare sparse weight solutions under L1 and L2 penalties.
+- [ ] **0741.** Study how feature scaling changes gradient descent convergence.
+- [ ] **0742.** Study how label scaling changes squared-error gradient magnitudes.
+- [ ] **0743.** Implement gradient clipping by global L2 norm.
+- [ ] **0744.** Track global gradient norms over a deliberately unstable optimization run.
+- [ ] **0745.** Create a learning-rate schedule that decreases with iteration.
+- [ ] **0746.** Implement backtracking line search on a convex quadratic.
+- [ ] **0747.** Derive and implement Newton's method for a positive-definite quadratic.
+- [ ] **0748.** Compare Newton steps against plain gradient descent.
+- [ ] **0749.** Implement conjugate gradient for a symmetric positive-definite linear system.
+- [ ] **0750.** Compare conjugate gradient against a direct solve.
+- [ ] **0751.** Optimize a ridge-regression objective without explicit matrix inversion.
+- [ ] **0752.** Compare validation curves for several regularization strengths.
+- [ ] **0753.** Plot singular values of a linear network weight matrix during training.
+- [ ] **0754.** Apply a spectral-norm constraint to a weight matrix.
+- [ ] **0755.** Project weights onto an L2 ball after each gradient update.
+- [ ] **0756.** Optimize a logistic regression classifier on linearly separable toy data.
+- [ ] **0757.** Visualize the changing logistic-regression decision boundary.
+- [ ] **0758.** Use finite differences to diagnose a deliberately wrong gradient.
+- [ ] **0759.** Log epoch, loss, gradient norm, parameter norm, and validation metric.
+- [ ] **0760.** Implement an experiment harness comparing five optimizers with fixed seeds.
+
+### 20. Tensors, axes, broadcasting, and deep-learning shapes
+
+- [ ] **0761.** Create tensors of ranks 0, 1, 2, 3, and 4 in NumPy.
+- [ ] **0762.** Identify shapes and axis meanings for a batch of RGB images.
+- [ ] **0763.** Convert an image batch from NHWC to NCHW layout.
+- [ ] **0764.** Convert the same batch back and verify equality.
+- [ ] **0765.** Flatten one image but preserve the batch dimension.
+- [ ] **0766.** Reshape a 32×28×28 batch into 32×784.
+- [ ] **0767.** Compute mean intensity per image and per pixel across a batch.
+- [ ] **0768.** Normalize RGB images using one mean and std per channel.
+- [ ] **0769.** Compute per-token feature means for a batch of token embeddings.
+- [ ] **0770.** Broadcast a mask of shape (batch, sequence) over embedding dimensions.
+- [ ] **0771.** Construct a padding mask for sequences of different lengths.
+- [ ] **0772.** Use the mask to compute mean pooling without including pad tokens.
+- [ ] **0773.** Compare masked and unmasked pooling on padded sequences.
+- [ ] **0774.** Use `np.einsum` to multiply batched activations by a shared weight matrix.
+- [ ] **0775.** Implement a batched 1×1 convolution as a matrix multiplication.
+- [ ] **0776.** Extract all 2×2 patches from a small 2D image using loops.
+- [ ] **0777.** Flatten patches and apply a shared linear kernel by matrix multiplication.
+- [ ] **0778.** Compare direct convolution computation with im2col-style multiplication.
+- [ ] **0779.** Implement batched dot products between corresponding row vectors.
+- [ ] **0780.** Compute all pairwise interactions between tokens in a sequence.
+- [ ] **0781.** Build a rank-4 array representing multi-head attention scores.
+- [ ] **0782.** Transpose its axes to move head before sequence dimensions.
+- [ ] **0783.** Explain the difference between reshape and transpose with an example.
+- [ ] **0784.** Create a broadcasted causal attention mask of shape (1,1,L,L).
+- [ ] **0785.** Apply a causal mask to score tensors with safe negative infinity handling.
+- [ ] **0786.** Check output shapes after batched matmul on rank-4 arrays.
+- [ ] **0787.** Compute tensor reductions with `keepdims=True` and explain their purpose.
+- [ ] **0788.** Concatenate two token embedding sequences along the sequence axis.
+- [ ] **0789.** Concatenate features along the final axis and verify dimension growth.
+- [ ] **0790.** Split a feature dimension into four attention heads.
+- [ ] **0791.** Merge attention heads back without scrambling token order.
+- [ ] **0792.** Implement layer normalization across only the final feature axis.
+- [ ] **0793.** Verify normalized feature vectors have mean≈0 and variance≈1 when nonconstant.
+- [ ] **0794.** Implement a two-layer tokenwise feed-forward network.
+- [ ] **0795.** Count parameters in dense layers for various feature dimensions.
+- [ ] **0796.** Estimate memory occupied by a batch of float32 attention score tensors.
+- [ ] **0797.** Measure intermediate tensor sizes during a toy forward pass.
+- [ ] **0798.** Recreate common shape bugs and write explicit assertions to catch them.
+- [ ] **0799.** Reimplement three tensor operations in PyTorch and compare with NumPy.
+- [ ] **0800.** Document every tensor shape in a mini-transformer feed-forward pipeline.
+
+### 21. Embeddings, vector search, and recommendation systems
+
+- [ ] **0801.** Create a 100-word toy vocabulary and assign each word an 8D embedding.
+- [ ] **0802.** Retrieve embeddings for a five-token sentence using integer token IDs.
+- [ ] **0803.** Compute a sentence embedding by averaging its word vectors.
+- [ ] **0804.** Compute a masked mean embedding for padded variable-length sentences.
+- [ ] **0805.** Compare mean pooling and max pooling for the same token embeddings.
+- [ ] **0806.** Apply length normalization to ten synthetic sentence embeddings.
+- [ ] **0807.** Compute query-to-document cosine similarities for 100 document embeddings.
+- [ ] **0808.** Implement exact top-k vector retrieval with sorting.
+- [ ] **0809.** Implement faster top-k selection using `argpartition`.
+- [ ] **0810.** Verify the same top-k rankings from full sort and partial selection.
+- [ ] **0811.** Construct an embedding database with clustered semantic categories.
+- [ ] **0812.** Retrieve nearest neighbors for a query from each cluster.
+- [ ] **0813.** Compare Euclidean and cosine retrieval on vectors of varying lengths.
+- [ ] **0814.** Measure recall of retrieval before and after PCA compression.
+- [ ] **0815.** Store embeddings as float16 and inspect cosine ranking changes.
+- [ ] **0816.** Quantize embeddings to int8 and measure reconstruction error.
+- [ ] **0817.** Implement a simple scalar quantizer per feature dimension.
+- [ ] **0818.** Compare full-precision and quantized top-k retrieval accuracy.
+- [ ] **0819.** Build a document vector using manually calculated TF-IDF weights.
+- [ ] **0820.** Create a TF-IDF document-term matrix with NumPy or sklearn.
+- [ ] **0821.** Normalize TF-IDF rows and rank documents by cosine similarity.
+- [ ] **0822.** Reduce TF-IDF dimension with truncated SVD and rerank queries.
+- [ ] **0823.** Compare sparse lexical retrieval and dense synthetic embedding retrieval.
+- [ ] **0824.** Build positive and negative embedding pairs for a contrastive task.
+- [ ] **0825.** Compute a contrastive similarity matrix for a minibatch.
+- [ ] **0826.** Implement an InfoNCE-style cross-entropy loss from similarity logits.
+- [ ] **0827.** Investigate how temperature changes normalized similarity scores.
+- [ ] **0828.** Use matrix multiplication to compute all in-batch negative similarities.
+- [ ] **0829.** Find hard negatives for each positive pair within a batch.
+- [ ] **0830.** Implement triplet margin loss using three embedding batches.
+- [ ] **0831.** Demonstrate embedding collapse by mapping all inputs to one vector.
+- [ ] **0832.** Measure average pairwise cosine similarity as a collapse diagnostic.
+- [ ] **0833.** Model user and item embeddings with matrix factorization.
+- [ ] **0834.** Generate candidate item scores using user-to-item dot products.
+- [ ] **0835.** Compare dot-product and cosine recommendation rankings.
+- [ ] **0836.** Add per-item bias terms to latent-factor recommendation scores.
+- [ ] **0837.** Calculate Precision@K, Recall@K, and MRR for toy retrieval labels.
+- [ ] **0838.** Build a small vector search API function returning scores and IDs.
+- [ ] **0839.** Run a mini retrieval evaluation across 20 queries and report Recall@5.
+- [ ] **0840.** Create an end-to-end toy RAG retriever using chunk vectors, cosine rank, and source IDs.
+
+### 22. Attention, transformers, and low-rank adaptation
+
+- [ ] **0841.** Create a tiny sequence of four 3D token embeddings.
+- [ ] **0842.** Build separate query, key, and value projection matrices.
+- [ ] **0843.** Calculate Q, K, and V using matrix multiplication.
+- [ ] **0844.** Calculate unscaled attention scores `Q@K.T`.
+- [ ] **0845.** Scale attention scores by the square root of key dimension.
+- [ ] **0846.** Implement stable row-wise softmax for a score matrix.
+- [ ] **0847.** Verify every attention weight row sums to one.
+- [ ] **0848.** Calculate attention outputs as `softmax(scores)@V`.
+- [ ] **0849.** Hand-compute attention for a two-token, two-feature example.
+- [ ] **0850.** Compare numerical outputs of scaled versus unscaled attention.
+- [ ] **0851.** Visualize a 5×5 attention-weight heatmap.
+- [ ] **0852.** Make a query attend strongly to one chosen key using crafted projections.
+- [ ] **0853.** Replace every V row with the same vector and inspect attention outputs.
+- [ ] **0854.** Apply a padding mask to eliminate attention to pad tokens.
+- [ ] **0855.** Apply a causal mask so token i cannot attend to future tokens.
+- [ ] **0856.** Verify causal attention weights above the diagonal are zero.
+- [ ] **0857.** Implement self-attention over a batch of independent sequences.
+- [ ] **0858.** Implement cross-attention with different query and key sequence lengths.
+- [ ] **0859.** Split a model dimension of eight into two attention heads.
+- [ ] **0860.** Calculate separate attention scores for each head.
+- [ ] **0861.** Concatenate head outputs and apply an output projection.
+- [ ] **0862.** Verify a two-head output shape matches the original model width.
+- [ ] **0863.** Show how attention patterns differ when head projections differ.
+- [ ] **0864.** Implement a tiny multi-head self-attention module using NumPy.
+- [ ] **0865.** Compare your NumPy module against an equivalent PyTorch implementation.
+- [ ] **0866.** Construct sinusoidal position encodings and inspect their matrix shape.
+- [ ] **0867.** Add positional encodings to token embeddings and compare attention scores.
+- [ ] **0868.** Implement layer normalization around a residual connection.
+- [ ] **0869.** Build a tokenwise two-layer feed-forward block.
+- [ ] **0870.** Combine attention, residuals, normalization, and feed-forward layers.
+- [ ] **0871.** Verify shapes after every sublayer of a toy transformer encoder block.
+- [ ] **0872.** Estimate attention score memory for sequence lengths 128, 512, and 2048.
+- [ ] **0873.** Benchmark attention runtime as sequence length doubles.
+- [ ] **0874.** Compare causal attention with full bidirectional attention on one sequence.
+- [ ] **0875.** Implement grouped-query attention shape logic with shared K/V heads.
+- [ ] **0876.** Create a low-rank weight update `ΔW=B@A` for a dense layer.
+- [ ] **0877.** Compare parameter counts of full fine-tuning and LoRA at several ranks.
+- [ ] **0878.** Apply a LoRA update to Q and V projections in a tiny attention layer.
+- [ ] **0879.** Merge LoRA weights into the base matrix and verify equal outputs.
+- [ ] **0880.** Produce a shape-annotated, tested forward pass of a minimal transformer block.
+
+### 23. Graph linear algebra and spectral machine learning
+
+- [ ] **0881.** Construct an adjacency matrix for an undirected five-node graph.
+- [ ] **0882.** Construct an adjacency matrix for a directed five-node graph.
+- [ ] **0883.** Verify symmetry of an undirected graph adjacency matrix.
+- [ ] **0884.** Compute node degrees using adjacency-matrix row sums.
+- [ ] **0885.** Construct the diagonal degree matrix.
+- [ ] **0886.** Compute the combinatorial graph Laplacian `L=D-A`.
+- [ ] **0887.** Verify the Laplacian row sums are zero for an undirected graph.
+- [ ] **0888.** Verify an all-ones vector is an eigenvector of L with eigenvalue zero.
+- [ ] **0889.** Compute graph Laplacian eigenvalues with `eigh`.
+- [ ] **0890.** Count connected components from near-zero Laplacian eigenvalues.
+- [ ] **0891.** Construct a graph with two disconnected communities and confirm zero-eigenvalue count.
+- [ ] **0892.** Connect the communities with one edge and recompute the spectrum.
+- [ ] **0893.** Compute the symmetric normalized Laplacian for non-isolated nodes.
+- [ ] **0894.** Handle isolated nodes correctly when normalizing the Laplacian.
+- [ ] **0895.** Use the Fiedler eigenvector to separate a toy graph into two groups.
+- [ ] **0896.** Plot graph nodes colored by spectral-clustering assignment.
+- [ ] **0897.** Compare spectral grouping to a hand-labeled community partition.
+- [ ] **0898.** Calculate `A@x` as one-step neighbor aggregation.
+- [ ] **0899.** Calculate `A@A` and interpret its entries as two-step walk counts.
+- [ ] **0900.** Simulate repeated diffusion of scalar node features.
+- [ ] **0901.** Use a random-walk transition matrix to propagate node probabilities.
+- [ ] **0902.** Verify transition-matrix rows sum to one where nodes have neighbors.
+- [ ] **0903.** Compute a stationary distribution for a connected undirected random walk.
+- [ ] **0904.** Implement personalized PageRank iterations with teleportation.
+- [ ] **0905.** Rank nodes by the resulting PageRank scores.
+- [ ] **0906.** Create node feature matrix X with shape nodes×features.
+- [ ] **0907.** Apply graph convolution-like propagation `A_norm@X@W`.
+- [ ] **0908.** Compare propagation with and without self-loops.
+- [ ] **0909.** Inspect how normalized adjacency changes node feature magnitudes.
+- [ ] **0910.** Stack three graph propagation layers and measure oversmoothing.
+- [ ] **0911.** Compute average distance between connected-node embeddings before and after smoothing.
+- [ ] **0912.** Add a skip connection to graph propagation and compare node distinction.
+- [ ] **0913.** Implement a toy graph classification pipeline with mean node pooling.
+- [ ] **0914.** Predict synthetic node labels using propagated features and a linear classifier.
+- [ ] **0915.** Compare classifier accuracy using X versus propagated X.
+- [ ] **0916.** Express an undirected graph cut using the Laplacian quadratic form.
+- [ ] **0917.** Evaluate Laplacian smoothness `x.T@L@x` for smooth versus noisy node signals.
+- [ ] **0918.** Construct a graph embedding from low-frequency Laplacian eigenvectors.
+- [ ] **0919.** Compare nearest nodes in graph spectral space and raw feature space.
+- [ ] **0920.** Write a tested graph spectral-analysis script reporting components and partitions.
+
+### 24. Numerical precision, scalability, and production-minded LA
+
+- [ ] **0921.** Compare float16, float32, and float64 representations of simple decimals.
+- [ ] **0922.** Measure cancellation error when subtracting nearly equal floating-point numbers.
+- [ ] **0923.** Compare sums computed in forward and reverse order for mixed-magnitude values.
+- [ ] **0924.** Implement Kahan compensated summation for a long float32 vector.
+- [ ] **0925.** Compare compensated and naive sums against float64 reference.
+- [ ] **0926.** Generate a Hilbert matrix and report condition numbers across sizes.
+- [ ] **0927.** Measure solution error of `Ax=b` as matrix conditioning increases.
+- [ ] **0928.** Distinguish forward error from backward residual on an ill-conditioned solve.
+- [ ] **0929.** Compare explicit inversion against `solve` for speed and residual.
+- [ ] **0930.** Demonstrate the stability of log-sum-exp on large logits.
+- [ ] **0931.** Implement stable softmax for large positive and negative logits.
+- [ ] **0932.** Find overflow in naive norm computation on extreme inputs.
+- [ ] **0933.** Use a scaled norm algorithm or `np.linalg.norm` to improve robustness.
+- [ ] **0934.** Select a numerical tolerance based on dtype and matrix scale.
+- [ ] **0935.** Explain with tests why `==` is inappropriate for most float arrays.
+- [ ] **0936.** Use `np.allclose` with explicit relative and absolute tolerances.
+- [ ] **0937.** Build randomized tests for matrix identity and transpose laws.
+- [ ] **0938.** Build property-based tests for linearity of a matrix-vector transform.
+- [ ] **0939.** Build numerical checks for symmetry and positive definiteness.
+- [ ] **0940.** Profile memory for a dense 10,000×10,000 float32 matrix without exceeding a chosen budget.
+- [ ] **0941.** Estimate memory before allocating multiple large attention matrices.
+- [ ] **0942.** Convert a sparse document-term matrix to CSR and compare memory.
+- [ ] **0943.** Benchmark CSR versus dense matrix-vector multiplication at several sparsities.
+- [ ] **0944.** Use blocked matrix multiplication on a moderate synthetic problem.
+- [ ] **0945.** Benchmark blocked versus naive Python matrix multiplication.
+- [ ] **0946.** Compare contiguous and noncontiguous array multiplication performance.
+- [ ] **0947.** Investigate whether casting to float32 changes neighbor ranking.
+- [ ] **0948.** Compute top-k similarities in chunks rather than materializing all scores.
+- [ ] **0949.** Test batch size effects on exact nearest-neighbor throughput.
+- [ ] **0950.** Solve a large sparse SPD system with conjugate gradient.
+- [ ] **0951.** Record iterations and residual norms of conjugate gradient.
+- [ ] **0952.** Compare direct and iterative solvers on sparse systems.
+- [ ] **0953.** Use a randomized SVD implementation and compare reconstruction quality.
+- [ ] **0954.** Compare full SVD and randomized SVD time on a low-rank synthetic matrix.
+- [ ] **0955.** Measure matrix-multiplication throughput with reproducible warm-up and repeats.
+- [ ] **0956.** Detect NaNs, infinities, and extreme magnitudes in a matrix pipeline.
+- [ ] **0957.** Add informative shape, finiteness, and numerical-tolerance assertions.
+- [ ] **0958.** Use fixed random seeds and report dtype, hardware, and library versions.
+- [ ] **0959.** Write an experiment comparing precision, runtime, memory, and solution quality.
+- [ ] **0960.** Create a reusable linear-algebra test-and-benchmark module with documented safeguards.
+
+### 25. End-to-end AI capstone challenges
+
+- [ ] **0961.** Build a kNN classifier from scratch using vectorized Euclidean distances.
+- [ ] **0962.** Build cosine-similarity kNN and compare performance with Euclidean kNN.
+- [ ] **0963.** Build a ridge-regression model with closed-form and gradient-descent solvers.
+- [ ] **0964.** Build polynomial regression with scaling and regularization experiments.
+- [ ] **0965.** Build PCA from scratch and compare to sklearn on synthetic data.
+- [ ] **0966.** Build an image compressor that exposes rank-versus-quality tradeoffs.
+- [ ] **0967.** Build a grayscale image denoiser using truncated SVD.
+- [ ] **0968.** Build a minimal latent semantic search engine using TF-IDF and SVD.
+- [ ] **0969.** Build a semantic embedding search engine with batch cosine ranking.
+- [ ] **0970.** Build a RAG retrieval evaluator using query vectors and Recall@K.
+- [ ] **0971.** Build a user-item recommendation system using low-rank factors.
+- [ ] **0972.** Build an observed-only matrix completion system with train/test evaluation.
+- [ ] **0973.** Build NMF-based topic decomposition on a small nonnegative document matrix.
+- [ ] **0974.** Build a Gaussian anomaly detector using covariance and Mahalanobis distance.
+- [ ] **0975.** Build a covariance whitening pipeline with invertible transforms.
+- [ ] **0976.** Build a linear classifier with hand-coded gradient descent.
+- [ ] **0977.** Build logistic regression with gradient checking and a validation split.
+- [ ] **0978.** Build a two-layer NumPy neural network with manual backpropagation.
+- [ ] **0979.** Rebuild the same neural network in PyTorch and compare gradients.
+- [ ] **0980.** Build a batch-normalization-like layer and verify forward statistics.
+- [ ] **0981.** Build a layer normalization module with NumPy and PyTorch tests.
+- [ ] **0982.** Build a minimal self-attention layer from matrix operations.
+- [ ] **0983.** Build multi-head masked self-attention with shape/property tests.
+- [ ] **0984.** Build a tiny transformer encoder block with synthetic token embeddings.
+- [ ] **0985.** Build a causal toy transformer forward pass with key padding and attention masks.
+- [ ] **0986.** Add LoRA matrices to a toy transformer projection and verify merged equivalence.
+- [ ] **0987.** Build a graph node-classification pipeline with Laplacian features.
+- [ ] **0988.** Build a spectral graph-clustering tool and visualize two communities.
+- [ ] **0989.** Build a personalized PageRank-based graph recommender.
+- [ ] **0990.** Build a document-vector clustering pipeline with PCA visualization.
+- [ ] **0991.** Build a dimensionality-reduction benchmark comparing PCA and random projections.
+- [ ] **0992.** Build a vector retrieval benchmark for float32, float16, and int8 embeddings.
+- [ ] **0993.** Build a chunked top-k search tool constrained to a memory budget.
+- [ ] **0994.** Build a sparse-versus-dense TF-IDF similarity benchmark.
+- [ ] **0995.** Build an optimizer benchmark covering SGD, momentum, RMSProp, and Adam.
+- [ ] **0996.** Build a numerical-stability audit for least-squares and singular systems.
+- [ ] **0997.** Build a matrix-calculus gradient checker for three custom loss functions.
+- [ ] **0998.** Reproduce one classic PCA/SVD/attention result using your own implementation.
+- [ ] **0999.** Write technical documentation deriving equations and annotating tensor shapes for five capstones.
+- [ ] **1000.** Integrate vector search, PCA compression, and a simple reranker into a tested mini AI search app.
+
+## Suggested milestones
+
+| Exercises | Milestone | Evidence to produce |
+|---|---|---|
+| 0001–0200 | Vector and matrix fluency | NumPy helpers + shape tests |
+| 0201–0400 | Core linear-algebra mechanics | Matrix products, equation solver, basis/QR demos |
+| 0401–0600 | Spectral methods and factorizations | Eigen/SVD/Pseudoinverse notebook + diagnostics |
+| 0601–0800 | AI model mathematics | Regression, PCA, gradients, optimization, tensor tests |
+| 0801–0960 | Modern applied AI | Vector search, transformer attention, graph learning, numerical benchmarks |
+| 0961–1000 | Integration | Tested AI capstone projects and writeups |
+
+**Completion standard for each project:** Include a concise README, a reproducible run command, tests, before/after metrics, and a description of what the mathematics is doing.
