@@ -1,0 +1,8 @@
+# Production must supply real secret-manager backed values and an OIDC issuer.
+spring:
+  datasource:
+    hikari:
+      maximum-pool-size: 20
+logging:
+  level:
+    org.springframework.security: WARN

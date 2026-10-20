@@ -1,0 +1,8 @@
+# Local-only. Never ship test identities or passwords into production.
+logging:
+  level:
+    com.acme.appointmentcalendar: DEBUG
+
+app:
+  pagination:
+    secret: ${CURSOR_SIGNING_SECRET:LOCAL_DEVELOPMENT_ONLY_SIGNING_KEY_AT_LEAST_32_BYTES}

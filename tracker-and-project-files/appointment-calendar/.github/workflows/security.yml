@@ -1,0 +1,19 @@
+name: Security
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * 1'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '25'
+      - run: mvn -B -DskipTests dependency:tree
+      - run: |
+          echo 'TODO: configure approved SCA/SAST and SBOM publish provider with credentials in CI settings'

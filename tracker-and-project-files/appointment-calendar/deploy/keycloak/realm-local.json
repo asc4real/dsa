@@ -1,0 +1,16 @@
+{
+  "realm": "appointments",
+  "enabled": true,
+  "clients": [
+    {
+      "clientId": "appointment-calendar-cli",
+      "publicClient": true,
+      "standardFlowEnabled": true,
+      "directAccessGrantsEnabled": false,
+      "redirectUris": ["http://localhost:3000/*"],
+      "webOrigins": ["http://localhost:3000"],
+      "protocol": "openid-connect",
+      "defaultClientScopes": ["web-origins", "acr", "profile", "roles", "email"]
+    }
+  ]
+}

@@ -1,0 +1,548 @@
+[
+  {
+    "path": ".dockerignore",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": ".env.example",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": ".github/workflows/ci.yml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": ".github/workflows/release.yml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": ".github/workflows/security.yml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": ".gitignore",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "Dockerfile",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "Makefile",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "README.md",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "compose.yaml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "deploy/k8s/README.md",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "deploy/k8s/base/deployment.yaml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "deploy/k8s/base/kustomization.yaml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "deploy/k8s/base/service.yaml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "deploy/keycloak/realm-local.json",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "docs/implementation-manifest.json",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "docs/implemented-operations.json",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "docs/phase8-acceptance-matrix.md",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "docs/phase8-verification.json",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "docs/repository-manifest.md",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "openapi/appointment-calendar.yaml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "pom.xml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "scripts/smoke.sh",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "scripts/validate_migrations.py",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "scripts/validate_openapi.py",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/AppointmentCalendarApplication.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/OperationRouter.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/audit/AuditWriter.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/availability/AvailabilityPolicy.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/availability/AvailabilitySearchService.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/availability/CandidateResourceAllocator.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/availability/api/AvailabilityAdminApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/availability/api/AvailabilityApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/booking/BookingService.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/booking/api/BookingApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/CancelAppointmentRequest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/CreateBookingHoldRequest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/CreateDirectBookingRequest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/RescheduleAppointmentRequest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/catalog/CatalogReader.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/catalog/api/CatalogApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/idempotency/IdempotencyCoordinator.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/identity/api/IdentityApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/integration/ConfiguredEmailGateway.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/notification/EmailGateway.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/notification/NotificationDeliveryService.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/notification/ReminderPlanner.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/notification/api/NotificationApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/operations/HoldExpiryWorker.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/operations/NotificationWorker.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/operations/OutboxWorker.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/operations/ReminderWorker.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/operations/SchedulingMetrics.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/organization/AdminFacade.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/organization/api/OrganizationApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/outbox/OutboxDispatchService.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/outbox/OutboxWriter.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/platform/api/PlatformApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/reservation/ReservationPort.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/resource/api/ResourceApiController.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/security/Actor.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/security/ActorResolver.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/security/Permissions.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/security/SecurityConfiguration.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/ApiErrors.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/ApiFailure.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/CorrelationIdFilter.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/CursorCodec.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/HttpSupport.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/Jackson2Configuration.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/java/com/acme/appointmentcalendar/shared/Sql.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/resources/application-local.yml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/resources/application-prod.yml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/resources/application.yml",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/main/resources/db/migration/V001__extensions_and_global_identity.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V002__organizations_and_memberships.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V003__locations_staff_resources.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V004__services_and_requirements.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V005__availability_and_time_off.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V006__holds_and_appointments.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V007__active_resource_reservations.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V008__idempotency_and_audit.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V009__outbox.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V010__notifications_and_reminders.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V011__query_indexes.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/main/resources/db/migration/V012__tenant_integrity_constraints.sql",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": false
+  },
+  {
+    "path": "src/test/java/com/acme/appointmentcalendar/architecture/ApiOperationCoverageTest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/test/java/com/acme/appointmentcalendar/architecture/ModuleDependencyTest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/test/java/com/acme/appointmentcalendar/booking/AppointmentStateTransitionsTest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/test/java/com/acme/appointmentcalendar/booking/BookingWorkflowIntegrationTest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  },
+  {
+    "path": "src/test/java/com/acme/appointmentcalendar/persistence/ReservationConstraintTest.java",
+    "status": "GENERATED",
+    "runtime_verified": false,
+    "static_validated": true
+  }
+]

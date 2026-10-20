@@ -1,0 +1,4432 @@
+{
+  "project": "appointment-calendar",
+  "version": "2026-10-18",
+  "base_package": "com.acme.appointmentcalendar",
+  "architecture": "spring-modulith-single-maven-module",
+  "source_openapi": {
+    "paths": 48,
+    "operations": 67,
+    "schemas": 64
+  },
+  "module_dependencies": {
+    "shared": [],
+    "identity": [
+      "shared"
+    ],
+    "organization": [
+      "identity",
+      "audit",
+      "shared"
+    ],
+    "security": [
+      "identity",
+      "organization",
+      "audit",
+      "shared"
+    ],
+    "resource": [
+      "organization",
+      "audit",
+      "shared"
+    ],
+    "catalog": [
+      "organization",
+      "resource",
+      "audit",
+      "shared"
+    ],
+    "reservation": [
+      "shared"
+    ],
+    "availability": [
+      "organization",
+      "resource",
+      "catalog",
+      "reservation",
+      "audit",
+      "shared"
+    ],
+    "idempotency": [
+      "shared"
+    ],
+    "audit": [
+      "shared"
+    ],
+    "outbox": [
+      "shared"
+    ],
+    "booking": [
+      "organization",
+      "security",
+      "resource",
+      "catalog",
+      "reservation",
+      "availability",
+      "idempotency",
+      "audit",
+      "outbox",
+      "shared"
+    ],
+    "notification": [
+      "outbox",
+      "shared"
+    ],
+    "integration": [
+      "notification",
+      "shared"
+    ],
+    "operations": [
+      "booking",
+      "notification",
+      "outbox",
+      "shared"
+    ],
+    "platform": [
+      "organization",
+      "security",
+      "audit",
+      "shared"
+    ]
+  },
+  "files": [
+    {
+      "path": "pom.xml",
+      "purpose": "Single Maven build; Boot parent, Modulith BOM, version-managed dependencies and test/verification plugins.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "mvnw",
+      "purpose": "POSIX Maven wrapper launcher, generated from Maven Wrapper tooling.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "mvnw.cmd",
+      "purpose": "Windows Maven wrapper launcher for local development.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".mvn/wrapper/maven-wrapper.properties",
+      "purpose": "Pinned Maven distribution and checksum/distribution URL for reproducible builds.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "README.md",
+      "purpose": "First-run, architecture, dependencies, token acquisition, cURL walkthrough and support guide.",
+      "phase": 14,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "LICENSE",
+      "purpose": "Repository legal license; must be chosen before distribution; no assumed ownership grant.",
+      "phase": 14,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".gitignore",
+      "purpose": "Ignores build output, IDE files, local secrets and test artifacts.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".gitattributes",
+      "purpose": "Consistent line endings/binary classification across Windows and Unix.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".editorconfig",
+      "purpose": "Repository-wide whitespace, charset and line-ending conventions.",
+      "phase": 8,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".dockerignore",
+      "purpose": "Prevents secrets, build output, tests and docs from being sent unnecessarily to Docker build context.",
+      "phase": 11,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".env.example",
+      "purpose": "Documented, non-secret development environment-variable names.",
+      "phase": 11,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "Dockerfile",
+      "purpose": "Multi-stage OCI build with unprivileged minimal runtime and verifiable base image.",
+      "phase": 11,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "compose.yaml",
+      "purpose": "Local PostgreSQL, Keycloak, Mailpit and optional application services.",
+      "phase": 11,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "Makefile",
+      "purpose": "Shortcuts for build, test, dependencies and local operations; wrapper-compatible.",
+      "phase": 11,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "CHANGELOG.md",
+      "purpose": "Records backward-compatible and breaking API/application changes.",
+      "phase": 14,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "SECURITY.md",
+      "purpose": "Vulnerability disclosure channel and supported security policy.",
+      "phase": 14,
+      "area": "Root",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "openapi/appointment-calendar.yaml",
+      "purpose": "Canonical Phase 5 OpenAPI 3.1.2 design contract; 48 paths, 67 operations and 64 schemas.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "GENERATED",
+      "notes": "Existing draft attached; validated YAML parsing and operation inventory; not implementation tested."
+    },
+    {
+      "path": "openapi/README.md",
+      "purpose": "OpenAPI source-of-truth, review workflow, compatibility/versioning and contract testing conventions.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "openapi/examples/availability-search-request.json",
+      "purpose": "Example bounded availability search.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "openapi/examples/create-booking-hold-request.json",
+      "purpose": "Example idempotent hold creation.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "openapi/examples/confirm-hold-response.json",
+      "purpose": "Example successful confirmation response.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "openapi/examples/reschedule-request.json",
+      "purpose": "Example ETag and idempotency-based rescheduling request body.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "openapi/examples/problem-slot-conflict.json",
+      "purpose": "Canonical RFC 9457 booking-conflict example.",
+      "phase": 5,
+      "area": "OpenAPI",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/repository-manifest.md",
+      "purpose": "Full file-by-file Phase 7 implementation blueprint, architecture contracts and delivery gates.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "GENERATED",
+      "notes": "Phase 7 blueprint file created as deliverable outside repository; place here when scaffolding."
+    },
+    {
+      "path": "docs/implementation-manifest.json",
+      "purpose": "Machine-readable file inventory with strict implementation status per file.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "GENERATED",
+      "notes": "Phase 7 blueprint file created as deliverable outside repository; place here when scaffolding."
+    },
+    {
+      "path": "docs/architecture.md",
+      "purpose": "C4/system-context, deployment, module dataflow and strong/eventual consistency.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/module-boundaries.md",
+      "purpose": "Allowed public contracts, prohibited dependencies, Spring Modulith rules and ports.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/domain-model.md",
+      "purpose": "Aggregates, lifecycle, value objects and business invariants.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/database-design.md",
+      "purpose": "ERD, tenant-safe FKs, reservation exclusion constraints and transaction boundaries.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/api.md",
+      "purpose": "Endpoint behavior, authentication, ETags, errors, pagination, idempotency and examples.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/security.md",
+      "purpose": "OIDC, JWT, permission checks, TLS, CORS, CSRF posture and hardening.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/threat-model.md",
+      "purpose": "STRIDE attack paths, mitigating controls, tests and residual risk.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/authorization-matrix.md",
+      "purpose": "Actor-by-resource/function/relationship privileges and 401/403/404 behavior.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/tenant-isolation.md",
+      "purpose": "Tenant lookup discipline, composite FKs and optional RLS evaluation.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/privacy.md",
+      "purpose": "PII classification, retention, access/export, erasure and log redaction.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/compliance-readiness.md",
+      "purpose": "Regime-by-regime gap analysis without false compliance assertions.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/concurrency.md",
+      "purpose": "DB GiST invariant, hold expiry/confirmation races, idempotency race and rescheduling.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/testing.md",
+      "purpose": "Testing pyramid, Testcontainers strategy, critical tests and CI gates.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/performance.md",
+      "purpose": "Availability algorithm cost, index workloads, load tests and SLO evidence.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/operations.md",
+      "purpose": "Production deployment, monitoring, alerting, jobs, feature configuration.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/runbook.md",
+      "purpose": "Operator responses to DB outage, outbox backlog, IdP failures, stuck holds.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/disaster-recovery.md",
+      "purpose": "RPO/RTO objectives, backup, PITR, restore rehearsal, key recovery.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/incident-response.md",
+      "purpose": "Security alert triage, evidence, containment and notification process.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/requirements-traceability.md",
+      "purpose": "Maps requirements FR/INV/NFR to code, migrations, tests and evidence.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/architecture-review.md",
+      "purpose": "Phase 16 completed review outcomes, severities and closure evidence.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/known-limitations.md",
+      "purpose": "Honest unsupported items and deliberate v1 exclusions.",
+      "phase": 14,
+      "area": "Documentation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0001-modular-monolith.md",
+      "purpose": "Choose modular monolith and boundaries; reasons not to use microservices.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0002-shared-schema-tenancy.md",
+      "purpose": "Shared-schema tenancy and tenant-safe integrity.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0003-postgresql-authority.md",
+      "purpose": "Database authoritative for reservation correctness.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0004-exclusion-constraint.md",
+      "purpose": "GiST exclusion constraint with half-open tstzrange and active-only semantics.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0005-reservation-module.md",
+      "purpose": "Extract resource reservation into module to avoid booking ↔ availability cycle.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0006-oidc-resource-server.md",
+      "purpose": "External OIDC; no application password storage.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0007-authorization-policies.md",
+      "purpose": "RBAC and object/relationship authorization placement.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0008-time-model.md",
+      "purpose": "Instant/TIMESTAMPTZ with IANA timezones and DST handling.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0009-hold-expiry.md",
+      "purpose": "Transactionally safe hold state transitions, no in-memory timers.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0010-idempotency.md",
+      "purpose": "Per-principal/tenant/operation request deduplication and retained result.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0011-outbox.md",
+      "purpose": "Transactional outbox and idempotent eventual side effects.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0012-reminder-worker.md",
+      "purpose": "DB-backed reminders and multi-worker SKIP LOCKED claims.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0013-no-redis-kafka.md",
+      "purpose": "Do not add Redis/Kafka until justified by measurable demand.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0014-api-etags.md",
+      "purpose": "Strong ETag/If-Match, immutable DTOs and lifecycle commands.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0015-tenant-rls-evaluation.md",
+      "purpose": "RLS adoption gate, transaction-local context and bypass analysis.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "docs/adr/0016-operational-slo.md",
+      "purpose": "SLOs, RPO/RTO goals, performance budgets and evidence.",
+      "phase": 14,
+      "area": "Architecture Decisions",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/keycloak/realm-local.json",
+      "purpose": "Dev-only OIDC realm, clients, roles and redirect origins without production secrets.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/keycloak/README.md",
+      "purpose": "Local token/client provisioning and realm import steps.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/kustomization.yaml",
+      "purpose": "Defines base Kustomize resource set.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/deployment.yaml",
+      "purpose": "Stateless application pods, resources, securityContext, probes, termination policy.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/service.yaml",
+      "purpose": "ClusterIP HTTP service.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/service-account.yaml",
+      "purpose": "Dedicated least-privilege workload identity.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/configmap.yaml",
+      "purpose": "Non-secret platform settings.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/ingress.yaml",
+      "purpose": "TLS Ingress host/routing template with controlled annotations.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/network-policy.yaml",
+      "purpose": "Restrict ingress and egress to required dependencies.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/hpa.yaml",
+      "purpose": "Resource-based horizontal scaling with realistic min/max.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/pdb.yaml",
+      "purpose": "Disruption budget for multi-replica availability.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/base/external-secret.example.yaml",
+      "purpose": "Provider-neutral illustrative external secret reference, no values.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/overlays/local/kustomization.yaml",
+      "purpose": "Optional local Kubernetes overlay.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/overlays/staging/kustomization.yaml",
+      "purpose": "Staging overlay and staging-safe knobs.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/overlays/production/kustomization.yaml",
+      "purpose": "Production replicas, ingress and policy overlay.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "deploy/k8s/README.md",
+      "purpose": "Kubernetes apply, validate, rollback, migration strategy and secrets setup.",
+      "phase": 11,
+      "area": "Deployment",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".github/workflows/ci.yml",
+      "purpose": "Compile, format, unit/integration/architecture tests, contract lint and quality checks.",
+      "phase": 12,
+      "area": "CI/CD",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".github/workflows/security.yml",
+      "purpose": "Dependency vulnerabilities, secret scan, SBOM and container scan with severity gates.",
+      "phase": 12,
+      "area": "CI/CD",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".github/workflows/release.yml",
+      "purpose": "Versioned build, OCI provenance/signing and approval-controlled publication.",
+      "phase": 12,
+      "area": "CI/CD",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".github/dependabot.yml",
+      "purpose": "Automated reviewed dependency and GitHub Actions upgrades.",
+      "phase": 12,
+      "area": "CI/CD",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".github/CODEOWNERS",
+      "purpose": "Review ownership for security, schema, API and deployments.",
+      "phase": 12,
+      "area": "CI/CD",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": ".github/pull_request_template.md",
+      "purpose": "Checklist for API/DB/security/observability/test changes.",
+      "phase": 12,
+      "area": "CI/CD",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/bootstrap-local.sh",
+      "purpose": "Dependency bootstrap for Unix developer workstation.",
+      "phase": 11,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/bootstrap-local.ps1",
+      "purpose": "Dependency bootstrap for Windows PowerShell.",
+      "phase": 11,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/wait-for-postgres.sh",
+      "purpose": "Waits for local PostgreSQL readiness with bounded retry.",
+      "phase": 11,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/seed-local.sql",
+      "purpose": "Explicit opt-in development fixtures, never a production Flyway migration.",
+      "phase": 11,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/get-local-token.sh",
+      "purpose": "Documented non-production OAuth token helper, secrets supplied at runtime.",
+      "phase": 11,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/validate-openapi.sh",
+      "purpose": "Lint/check contract syntax, refs, operation IDs and basic policies.",
+      "phase": 12,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/validate-manifest.py",
+      "purpose": "Check duplicate paths, known phases/statuses and manifest consistency.",
+      "phase": 12,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/check-migration-safety.sh",
+      "purpose": "Validate Flyway migration naming/order and prohibit destructive prod defaults.",
+      "phase": 12,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "scripts/backup-restore-rehearsal.md",
+      "purpose": "Commands and verification procedures for a controlled restore drill.",
+      "phase": 14,
+      "area": "Scripts",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/README.md",
+      "purpose": "k6 test strategy, assumptions, credential handling, measurements and use.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/k6/config.js",
+      "purpose": "Environment and performance thresholds for k6 workloads.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/k6/smoke.js",
+      "purpose": "Minimal functional smoke scenario.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/k6/baseline.js",
+      "purpose": "Representative browse/book workload under baseline volume.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/k6/hot-slot.js",
+      "purpose": "Many callers competing for same slot without masking conflict results.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/k6/spike.js",
+      "purpose": "Rapid step-up workload and rate-limit behavior.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "load-tests/k6/stress.js",
+      "purpose": "Sustained above-target workload, back-pressure and recovery.",
+      "phase": 10,
+      "area": "Load Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/AppointmentCalendarApplication.java",
+      "purpose": "Single Spring Boot launcher and Modulith application root.",
+      "phase": 8,
+      "area": "Application",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/package-info.java",
+      "purpose": "Spring Modulith metadata for shared; optional allowed dependency list.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/contract/package-info.java",
+      "purpose": "Named interface exporting only stable cross-module primitives.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/contract/AuthenticatedActor.java",
+      "purpose": "Immutable identity and platform-scoped authority context for use cases.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/contract/CurrentActor.java",
+      "purpose": "Port to resolve verified authenticated actor from request context.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/contract/ClockProvider.java",
+      "purpose": "Injectable UTC clock abstraction for deterministic business tests.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/contract/PageCursor.java",
+      "purpose": "Validated opaque keyset pagination cursor value type.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/contract/DomainEventEnvelope.java",
+      "purpose": "Safe event metadata envelope (ID, type, occurrence, tenant, correlation).",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/error/DomainException.java",
+      "purpose": "Typed domain exception base carrying stable error code and safe detail.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/error/BusinessErrorCode.java",
+      "purpose": "Central documented error-code vocabulary, not HTTP-specific.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/error/ApiExceptionHandler.java",
+      "purpose": "RFC 9457 mapping and safe response for framework/domain failures.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/error/ProblemResponseFactory.java",
+      "purpose": "Builds consistent ProblemDetail responses without leaking internals.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/web/CorrelationIdFilter.java",
+      "purpose": "Accepts/generates safe correlation ID and propagates it in responses/logs.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/shared/web/PaginationSupport.java",
+      "purpose": "Bounds page sizes and validates server-side cursors.",
+      "phase": 8,
+      "area": "shared",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/package-info.java",
+      "purpose": "Spring Modulith metadata for identity; optional allowed dependency list.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/api/MeController.java",
+      "purpose": "GET /api/v1/me, sanitized application identity view.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/api/dto/MeResponse.java",
+      "purpose": "Current authenticated app profile view.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/api/dto/MembershipSummaryResponse.java",
+      "purpose": "Profile-side membership summary DTO type; membership listing owned by organization.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/contract/package-info.java",
+      "purpose": "Named interface allowing other modules to lookup minimal profile identity.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/contract/UserIdentityReader.java",
+      "purpose": "Read-only identity/subject to profile reference port.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/contract/UserReference.java",
+      "purpose": "Minimal user ID/issuer/subject typed response.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/application/IdentityProfileService.java",
+      "purpose": "Maps OIDC issuer+subject to local identity reference.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/domain/UserProfile.java",
+      "purpose": "Identity-linked profile aggregate without passwords.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/infrastructure/persistence/UserProfileJpaEntity.java",
+      "purpose": "ORM mapping for global profile and unique issuer+subject.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/identity/infrastructure/persistence/UserProfileJpaRepository.java",
+      "purpose": "Restricted identity repository keyed by issuer+subject.",
+      "phase": 8,
+      "area": "identity",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/package-info.java",
+      "purpose": "Spring Modulith metadata for organization; optional allowed dependency list.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/OrganizationController.java",
+      "purpose": "Create/read/update organization and business hours endpoints.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/MembershipController.java",
+      "purpose": "List/add/update/revoke tenant memberships.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/MeMembershipController.java",
+      "purpose": "GET /api/v1/me/memberships using organization membership records.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/dto/OrganizationRequest.java",
+      "purpose": "Administrative creation/update DTO constraints.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/dto/OrganizationResponse.java",
+      "purpose": "Public organization output with version.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/dto/MembershipRequest.java",
+      "purpose": "Membership assignment/update DTO with role allowlist.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/dto/MembershipResponse.java",
+      "purpose": "Membership read projection.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/api/dto/WeeklyHoursDto.java",
+      "purpose": "ISO weekday and local-time window contract.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/contract/package-info.java",
+      "purpose": "Named interface for external tenant membership and business-hours read ports.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/contract/OrganizationReader.java",
+      "purpose": "Read tenant scheduling policies, default zone and authorized platform paginated list.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/contract/OrganizationProvisioningPort.java",
+      "purpose": "Restricted organization creation port used by platform provisioning API.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/contract/MembershipReader.java",
+      "purpose": "Check organization-scoped actor roles and active memberships.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/contract/OrganizationHoursReader.java",
+      "purpose": "Read recurring organization opening hours.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/contract/OrganizationRef.java",
+      "purpose": "Minimal tenant identity/timezone record.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/application/OrganizationCommandService.java",
+      "purpose": "Create, update, deactivate org and manage business hours.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/application/OrganizationQueryService.java",
+      "purpose": "Safe organization read model.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/application/MembershipService.java",
+      "purpose": "Membership mutation including last-admin protection and audit.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/application/MembershipPolicy.java",
+      "purpose": "Role grant/revoke rules and membership invariants.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/domain/Organization.java",
+      "purpose": "Tenant aggregate with policies and lifecycle.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/domain/OrganizationMembership.java",
+      "purpose": "Actor/tenant role membership aggregate.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/domain/BusinessHours.java",
+      "purpose": "Recurring weekly organization hours value object.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/infrastructure/persistence/OrganizationJpaEntity.java",
+      "purpose": "Organization JPA persistence mapping.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/infrastructure/persistence/MembershipJpaEntity.java",
+      "purpose": "Membership JPA mapping with tenant constraints.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/infrastructure/persistence/OrganizationJpaRepository.java",
+      "purpose": "Tenant-aware organization access.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/infrastructure/persistence/MembershipJpaRepository.java",
+      "purpose": "Membership and permission query implementation.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/organization/infrastructure/persistence/BusinessHoursJpaEntity.java",
+      "purpose": "ORM mapping of organization hours.",
+      "phase": 8,
+      "area": "organization",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/package-info.java",
+      "purpose": "Spring Modulith metadata for security; optional allowed dependency list.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/api/SecurityConfiguration.java",
+      "purpose": "Spring Security filter chain, token JWT rules, stateless API security.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/api/OidcJwtConfiguration.java",
+      "purpose": "Trusted issuer/audience/algorithm/JWK cache configuration.",
+      "phase": 8,
+      "area": "security",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/api/ApiAuthorizationEntryPoint.java",
+      "purpose": "RFC 9457-safe 401 handler.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/api/ApiAccessDeniedHandler.java",
+      "purpose": "RFC 9457-safe 403 handler.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/contract/package-info.java",
+      "purpose": "Named interface for permission and tenant access decisions.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/contract/TenantAccessPolicy.java",
+      "purpose": "Checks active membership and scoped authorization.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/contract/Permission.java",
+      "purpose": "Stable permission identifiers used by domain use cases.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/application/AuthenticatedActorResolver.java",
+      "purpose": "Converts verified JWT into stable application actor identity.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/application/TenantAuthorizationService.java",
+      "purpose": "Tenant membership and permissions using OrganizationReader.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/application/SecurityAuditService.java",
+      "purpose": "Security event emission via audit facade where safe.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/infrastructure/JwtClaimValidator.java",
+      "purpose": "Validates issuer, audience, expiration and critical token claims.",
+      "phase": 8,
+      "area": "security",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/security/infrastructure/TrustedProxyConfiguration.java",
+      "purpose": "Trusted forwarding/host controls for ingress deployments.",
+      "phase": 8,
+      "area": "security",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/package-info.java",
+      "purpose": "Spring Modulith metadata for resource; optional allowed dependency list.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/api/StaffController.java",
+      "purpose": "All Phase 5 staff create/list/get/update/deactivate endpoints.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/api/LocationController.java",
+      "purpose": "All Phase 5 location and opening-hours endpoints.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/api/CalendarResourceController.java",
+      "purpose": "Generic resource create/list/get/update/deactivate endpoints.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/api/dto/StaffDto.java",
+      "purpose": "Staff create/update/response API records.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/api/dto/LocationDto.java",
+      "purpose": "Location create/update/response API records.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/api/dto/ResourceDto.java",
+      "purpose": "Resource create/update/response API records.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/contract/package-info.java",
+      "purpose": "Named interface exporting resource/location/staff reads.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/contract/ResourceReader.java",
+      "purpose": "Read resource eligibility, location and status.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/contract/LocationReader.java",
+      "purpose": "Read location hours, timezone and status.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/contract/StaffReader.java",
+      "purpose": "Resolve staff-to-resource linkage and tenant.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/application/StaffManagementService.java",
+      "purpose": "Staff lifecycle and linked staff resource provisioning.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/application/LocationManagementService.java",
+      "purpose": "Location lifecycle, timezone and hours.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/application/ResourceManagementService.java",
+      "purpose": "Resource lifecycle and safe deactivation.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/application/ResourceEligibilityPolicy.java",
+      "purpose": "Ensures bookable resource belongs to correct tenant/location.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/domain/CalendarResource.java",
+      "purpose": "Reservable resource entity with type/status/location.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/domain/Location.java",
+      "purpose": "Tenant location with business hours and zone.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/domain/StaffMember.java",
+      "purpose": "Staff aggregate optionally linked to app identity.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/domain/ResourceType.java",
+      "purpose": "Resource type enumeration.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/CalendarResourceJpaEntity.java",
+      "purpose": "Resource JPA mapping.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/LocationJpaEntity.java",
+      "purpose": "Location JPA mapping.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/StaffJpaEntity.java",
+      "purpose": "Staff JPA mapping.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/ResourceJpaRepository.java",
+      "purpose": "Tenant-qualified resource queries.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/LocationJpaRepository.java",
+      "purpose": "Tenant-qualified location queries.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/StaffJpaRepository.java",
+      "purpose": "Tenant-qualified staff queries.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/resource/infrastructure/persistence/LocationHoursJpaEntity.java",
+      "purpose": "Location recurring hours persistence.",
+      "phase": 8,
+      "area": "resource",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/package-info.java",
+      "purpose": "Spring Modulith metadata for catalog; optional allowed dependency list.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/api/ServiceCatalogController.java",
+      "purpose": "Service list/create/get/update/deactivate and requirements endpoints.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/api/dto/ServiceDto.java",
+      "purpose": "Service request/response records and snapshots.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/api/dto/ResourceRequirementDto.java",
+      "purpose": "Required resource groups and eligible resource DTOs.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/contract/package-info.java",
+      "purpose": "Named interface exporting validated service definitions.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/contract/ServiceCatalogReader.java",
+      "purpose": "Read service duration, policies, location eligibility and resource requirement groups.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/contract/ServiceSnapshot.java",
+      "purpose": "Immutable booking-time service policy snapshot.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/application/ServiceCatalogService.java",
+      "purpose": "Service create/update/deactivation and allowed locations.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/application/ServiceRequirementService.java",
+      "purpose": "Atomic replacement and validation of resource requirement groups.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/domain/BookableService.java",
+      "purpose": "Service aggregate with pricing placeholder and booking policies.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/domain/ServiceResourceRequirement.java",
+      "purpose": "Quantity/type requirement grouping.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/domain/ServiceResourceEligibility.java",
+      "purpose": "Allowed concrete resources for a requirement group.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/infrastructure/persistence/ServiceJpaEntity.java",
+      "purpose": "Service persistence and version.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/infrastructure/persistence/ServiceRequirementJpaEntity.java",
+      "purpose": "Requirement/eligibility persistence.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/infrastructure/persistence/ServiceJpaRepository.java",
+      "purpose": "Tenant-scoped service listing and reads.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/catalog/infrastructure/persistence/ServiceRequirementJpaRepository.java",
+      "purpose": "Requirements/eligibility queries.",
+      "phase": 8,
+      "area": "catalog",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/package-info.java",
+      "purpose": "Spring Modulith metadata for reservation; optional allowed dependency list.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/contract/package-info.java",
+      "purpose": "Named interface for resource occupancy reads and transactional reservation commands.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/contract/ReservationCommandPort.java",
+      "purpose": "Insert/convert/release reservation rows atomically under DB constraints.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/contract/ReservationReadPort.java",
+      "purpose": "Load occupied effective intervals efficiently for availability calculation.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/contract/ResourceOccupancy.java",
+      "purpose": "Canonical resource/time interval value object.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/contract/ReservationConflictException.java",
+      "purpose": "Typed DB conflict error surfaced to booking layer.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/domain/ResourceReservation.java",
+      "purpose": "ACTIVE/RELEASED reservation with HOLD/APPOINTMENT owner and buffered range.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/domain/ReservationInterval.java",
+      "purpose": "Half-open Instant range with nonzero duration invariant.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/infrastructure/persistence/ResourceReservationJpaEntity.java",
+      "purpose": "Persistence mapping with owner IDs, status, duration and tenant.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/infrastructure/persistence/ReservationNativeSqlRepository.java",
+      "purpose": "PostgreSQL-specific range insert/update/read and conflict translation.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/infrastructure/persistence/ReservationPersistenceAdapter.java",
+      "purpose": "Implements ReservationCommandPort/ReadPort in one short transaction context.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/reservation/infrastructure/persistence/ReservationConstraintTranslator.java",
+      "purpose": "Maps SQLSTATE 23P01 to domain slot conflict, without leaking SQL.",
+      "phase": 8,
+      "area": "reservation",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/package-info.java",
+      "purpose": "Spring Modulith metadata for availability; optional allowed dependency list.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/AvailabilitySearchController.java",
+      "purpose": "POST availability/search bounded advisory slot search.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/AvailabilityRuleController.java",
+      "purpose": "Resource weekly rule CRUD endpoints.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/AvailabilityExceptionController.java",
+      "purpose": "Resource exception endpoints.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/StaffTimeOffController.java",
+      "purpose": "Staff time-off listing/create/cancel endpoints.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/dto/AvailabilitySearchRequest.java",
+      "purpose": "Bounded date interval, service/location, optional preferred staff and zone.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/dto/AvailabilitySearchResponse.java",
+      "purpose": "Available slots, generatedAt and truncated/advisory flags.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/dto/AvailabilityRuleDto.java",
+      "purpose": "Weekly day/time/date rule contract.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/dto/AvailabilityExceptionDto.java",
+      "purpose": "One-time exception contract.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/api/dto/TimeOffDto.java",
+      "purpose": "Staff time-off contract.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/contract/package-info.java",
+      "purpose": "Named interface exposing booking-time availability validation.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/contract/AvailabilityPolicy.java",
+      "purpose": "Validates lead time, horizon, service and resource eligibility.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/contract/CandidateResourceAllocator.java",
+      "purpose": "Determines eligible combinations without exponential unbounded search.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/application/AvailabilitySearchService.java",
+      "purpose": "Batch loads rule/reservation windows and generates slot candidates.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/application/AvailabilityAdministrationService.java",
+      "purpose": "Manages recurring rules, exceptions and time off.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/application/AvailabilityIntervalEngine.java",
+      "purpose": "Merges availability and subtracts occupied intervals and time off.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/application/DaylightSavingPolicy.java",
+      "purpose": "ZoneRules gap/overlap ambiguity behavior.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/application/SlotCandidateGenerator.java",
+      "purpose": "Builds bounded aligned slots with buffers and rules.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/domain/AvailabilityRule.java",
+      "purpose": "Local weekly recurring window + effective dates.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/domain/AvailabilityException.java",
+      "purpose": "Allow/block special availability interval.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/domain/TimeOff.java",
+      "purpose": "Staff unavailable interval with lifecycle.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/domain/LocalAvailabilityWindow.java",
+      "purpose": "Local time window value type.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/domain/AvailableSlot.java",
+      "purpose": "Advisory slot with absolute instant and display offset.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/infrastructure/persistence/AvailabilityRuleJpaEntity.java",
+      "purpose": "Recurring rule JPA mapping.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/infrastructure/persistence/AvailabilityExceptionJpaEntity.java",
+      "purpose": "Override exception JPA mapping.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/infrastructure/persistence/TimeOffJpaEntity.java",
+      "purpose": "Staff time off mapping.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/infrastructure/persistence/AvailabilityRuleJpaRepository.java",
+      "purpose": "Tenant-scoped resource rules.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/infrastructure/persistence/AvailabilityExceptionJpaRepository.java",
+      "purpose": "Tenant-scoped exceptions.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/availability/infrastructure/persistence/TimeOffJpaRepository.java",
+      "purpose": "Tenant-scoped staff leave access.",
+      "phase": 8,
+      "area": "availability",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/package-info.java",
+      "purpose": "Spring Modulith metadata for idempotency; optional allowed dependency list.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/contract/package-info.java",
+      "purpose": "Named interface for mutation deduplication coordinator.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/contract/IdempotencyCoordinator.java",
+      "purpose": "Claims scoped key, compares fingerprint and returns stored result.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/contract/IdempotencyScope.java",
+      "purpose": "Tenant/principal/operation/key scope value object.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/contract/IdempotentResult.java",
+      "purpose": "Stored status/resource response for safe replay.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/application/IdempotencyService.java",
+      "purpose": "Transaction-aware unique claims, in-progress and completion handling.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/application/RequestFingerprintService.java",
+      "purpose": "Canonical method/path/body/precondition hash.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/infrastructure/persistence/IdempotencyRecordJpaEntity.java",
+      "purpose": "Unique scoped key, fingerprint, status, result and expiry.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/idempotency/infrastructure/persistence/IdempotencyJpaRepository.java",
+      "purpose": "Atomic key acquisition/lookup/cleanup support.",
+      "phase": 8,
+      "area": "idempotency",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/package-info.java",
+      "purpose": "Spring Modulith metadata for audit; optional allowed dependency list.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/contract/package-info.java",
+      "purpose": "Named interface for application audit writes and audit query projections.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/contract/AuditWriter.java",
+      "purpose": "Append critical audit records in caller transaction.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/contract/AuditReader.java",
+      "purpose": "Read bounded audit projections for authorized tenant administrator workflow.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/contract/AuditEventCommand.java",
+      "purpose": "Typed audit event fields with safe minimal metadata.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/api/AuditController.java",
+      "purpose": "GET audit-events, authorized and paginated.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/api/dto/AuditEventResponse.java",
+      "purpose": "Redacted read-only audit view.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/application/AuditQueryService.java",
+      "purpose": "Permission-scoped filters, time boundaries, keyset paging.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/contract_extra/AuditEventView.java",
+      "purpose": "Safe read-only audit projection exported to platform tenant-admin API.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/domain/AuditEvent.java",
+      "purpose": "Append-only business/security fact.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/infrastructure/persistence/AuditEventJpaEntity.java",
+      "purpose": "Append-only event mapping and indexed query columns.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/audit/infrastructure/persistence/AuditJpaRepository.java",
+      "purpose": "Bounded tenant-scoped audit searches.",
+      "phase": 8,
+      "area": "audit",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/package-info.java",
+      "purpose": "Spring Modulith metadata for outbox; optional allowed dependency list.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/contract/package-info.java",
+      "purpose": "Named interface exporting atomic event writes and delivery registry.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/contract/OutboxWriter.java",
+      "purpose": "Persist event in same transaction as booking mutation.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/contract/OutboxMessage.java",
+      "purpose": "Immutable structured event payload/metadata contract.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/contract/OutboxMessageHandler.java",
+      "purpose": "Handler interface registered by event type for async effects.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/application/OutboxClaimService.java",
+      "purpose": "Batched database claims and lease management.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/application/OutboxDispatchService.java",
+      "purpose": "Dispatch to idempotent handlers with retry/backoff.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/application/OutboxRetryPolicy.java",
+      "purpose": "Classifies permanent/transient processing errors.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/domain/OutboxEvent.java",
+      "purpose": "Durable event publication state and attempts.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/infrastructure/persistence/OutboxJpaEntity.java",
+      "purpose": "Events, statuses, due times, lease token and attempts.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/infrastructure/persistence/OutboxJdbcClaimRepository.java",
+      "purpose": "SKIP LOCKED short transactions with nonblocking leases.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/outbox/infrastructure/persistence/OutboxJpaRepository.java",
+      "purpose": "Outbox events and success/failure state persistence.",
+      "phase": 8,
+      "area": "outbox",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/package-info.java",
+      "purpose": "Spring Modulith metadata for booking; optional allowed dependency list.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/BookingHoldController.java",
+      "purpose": "Four hold endpoints: create/get/confirm/cancel.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/AppointmentController.java",
+      "purpose": "Direct create, appointment reads/lists, lifecycle command endpoints.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/AppointmentHistoryController.java",
+      "purpose": "GET appointment status history.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/CreateBookingHoldRequest.java",
+      "purpose": "Self-service hold request with no owner/status override.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/BookingHoldResponse.java",
+      "purpose": "Hold state/time/expiry and safe resource summary.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/CreateDirectBookingRequest.java",
+      "purpose": "Staff/scheduler delegated booking with authorized customer target.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/AppointmentResponse.java",
+      "purpose": "Safe appointment representation and version.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/RescheduleAppointmentRequest.java",
+      "purpose": "New time, location, preferred staff and bounded reason.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/CancelAppointmentRequest.java",
+      "purpose": "Cancellation reason only.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/NoShowRequest.java",
+      "purpose": "No-show reason if applicable.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/api/dto/AppointmentHistoryResponse.java",
+      "purpose": "Append-only lifecycle event projection.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/contract/package-info.java",
+      "purpose": "Named interface exposing hold expiration and appointment event references to jobs.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/contract/BookingMaintenance.java",
+      "purpose": "Expire holds in batches with concurrency-safe transitions.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/contract/AppointmentSummaryReader.java",
+      "purpose": "Minimal appointment summary for notification/reminder operations.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/BookingHoldApplicationService.java",
+      "purpose": "Self-hold creation/read/confirmation/cancellation; transactional.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/AppointmentCommandService.java",
+      "purpose": "Direct book, cancel, reschedule, check-in/start/complete/no-show.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/AppointmentQueryService.java",
+      "purpose": "Object-scoped get/list/me/history query handling.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/BookingAuthorizationPolicy.java",
+      "purpose": "Owner, staff assignment and delegated booking permissions.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/BookingHoldExpiryService.java",
+      "purpose": "Row-lock-safe expiry and opportunistic expired reservation release.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/BookingResourceSelectionService.java",
+      "purpose": "Deterministic multi-resource acquisition order and eligibility.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/AppointmentStateMachine.java",
+      "purpose": "Explicit status transitions and side effects.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/application/AppointmentConflictPolicy.java",
+      "purpose": "Translate reservation conflict and enforce 409 semantics.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/Appointment.java",
+      "purpose": "Appointment aggregate, snapshots and version.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/BookingHold.java",
+      "purpose": "ACTIVE/CONFIRMED/EXPIRED/CANCELLED aggregate with TTL.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/AppointmentParticipant.java",
+      "purpose": "Participant references and roles.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/AppointmentStatusHistory.java",
+      "purpose": "Append-only transition history.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/AppointmentStatus.java",
+      "purpose": "Appointment lifecycle statuses.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/BookingHoldStatus.java",
+      "purpose": "Hold lifecycle statuses.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/domain/AppointmentBookingPolicy.java",
+      "purpose": "Cancellable/reschedulable policy and notice windows.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/AppointmentJpaEntity.java",
+      "purpose": "Appointment JPA mapping with tenant, customer, snapshots and version.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/BookingHoldJpaEntity.java",
+      "purpose": "Hold JPA mapping with expiry and version.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/AppointmentParticipantJpaEntity.java",
+      "purpose": "Participant mapping.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/AppointmentHistoryJpaEntity.java",
+      "purpose": "History mapping.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/AppointmentJpaRepository.java",
+      "purpose": "Tenant and actor-scoped appointment data queries.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/BookingHoldJpaRepository.java",
+      "purpose": "Tenant/owner hold lookups and locking.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/BookingHoldLockRepository.java",
+      "purpose": "SELECT ... FOR UPDATE / SKIP LOCKED for confirmation-expiry races.",
+      "phase": 8,
+      "area": "booking",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/booking/infrastructure/persistence/AppointmentHistoryJpaRepository.java",
+      "purpose": "Tenant-scoped paged status history.",
+      "phase": 8,
+      "area": "booking",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/package-info.java",
+      "purpose": "Spring Modulith metadata for notification; optional allowed dependency list.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/api/ReminderDefinitionController.java",
+      "purpose": "List/create/update reminder definitions.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/api/AppointmentNotificationController.java",
+      "purpose": "Read scoped notifications for appointment.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/api/dto/ReminderDefinitionDto.java",
+      "purpose": "Reminder definition request and response.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/api/dto/NotificationResponse.java",
+      "purpose": "Safe read-only delivery status without PII leak.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/contract/package-info.java",
+      "purpose": "Named interface for delivery gateway and reminder job processing.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/contract/EmailGateway.java",
+      "purpose": "Provider-independent send API with safe message identity.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/contract/NotificationEventHandler.java",
+      "purpose": "Outbox handler for appointment-created/changed event payloads.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/contract/ReminderMaintenance.java",
+      "purpose": "Claim/process due reminder jobs; prevent duplicate sends.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/application/NotificationService.java",
+      "purpose": "Create notification intent, template and deduplication key.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/application/NotificationDeliveryService.java",
+      "purpose": "Attempt provider sends, update statuses, retries.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/application/ReminderDefinitionService.java",
+      "purpose": "Tenant-admin reminder policies and validation.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/application/ReminderInstanceService.java",
+      "purpose": "Persist derived reminder jobs from appointment events.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/application/NotificationTemplateRenderer.java",
+      "purpose": "Escaped subject/text/html rendering with bounded inputs.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/application/DeliveryRetryPolicy.java",
+      "purpose": "Bounded classification/backoff and final failure.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/domain/ReminderDefinition.java",
+      "purpose": "Relative reminder timing policy.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/domain/ReminderInstance.java",
+      "purpose": "Persistent scheduled reminder instance.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/domain/Notification.java",
+      "purpose": "Logical notification aggregate and deduplication.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/domain/NotificationDelivery.java",
+      "purpose": "Per-channel attempt and provider result.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/ReminderDefinitionJpaEntity.java",
+      "purpose": "Definition mapping.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/ReminderInstanceJpaEntity.java",
+      "purpose": "Reminder job due timestamps, leases and state.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/NotificationJpaEntity.java",
+      "purpose": "Notification identity, payload reference and status.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/NotificationDeliveryJpaEntity.java",
+      "purpose": "Delivery attempt/state mappings.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/NotificationJpaRepository.java",
+      "purpose": "Scoped notification status queries.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/ReminderJdbcClaimRepository.java",
+      "purpose": "Multi-pod SKIP LOCKED due reminders with leases.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/notification/infrastructure/persistence/NotificationDeliveryJpaRepository.java",
+      "purpose": "Claim/send retry statuses and idempotency.",
+      "phase": 8,
+      "area": "notification",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/integration/package-info.java",
+      "purpose": "Spring Modulith metadata for integration; optional allowed dependency list.",
+      "phase": 8,
+      "area": "integration",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/integration/email/SmtpEmailGateway.java",
+      "purpose": "Adapter implementing notification EmailGateway using local Mailpit/SMTP.",
+      "phase": 8,
+      "area": "integration",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/integration/email/SmtpConfiguration.java",
+      "purpose": "Typed config, timeouts, credentials injection and TLS.",
+      "phase": 8,
+      "area": "integration",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/integration/calendar/ExternalCalendarPort.java",
+      "purpose": "Extension point for ICS/Google/Microsoft providers, no live sync in v1.",
+      "phase": 8,
+      "area": "integration",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/integration/calendar/IcsExportService.java",
+      "purpose": "Optional safe read-only appointment ICS export service (not exposed in v1 API).",
+      "phase": 8,
+      "area": "integration",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/integration/http/ExternalHttpClientFactory.java",
+      "purpose": "Standardized bounded timeouts, allowed hosts and safe retry config.",
+      "phase": 8,
+      "area": "integration",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/package-info.java",
+      "purpose": "Spring Modulith metadata for operations; optional allowed dependency list.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/worker/BookingHoldExpiryJob.java",
+      "purpose": "Invokes BookingMaintenance in bounded scheduled batches.",
+      "phase": 8,
+      "area": "operations",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/worker/OutboxDispatcherJob.java",
+      "purpose": "Polls and dispatches outbox with leases.",
+      "phase": 8,
+      "area": "operations",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/worker/ReminderDispatchJob.java",
+      "purpose": "Claims/dispatches due reminders safely across pods.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/worker/NotificationRetryJob.java",
+      "purpose": "Processes due delivery retries.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/observability/BookingMetrics.java",
+      "purpose": "Micrometer counters/timers without high-cardinality tags.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/observability/OutboxMetrics.java",
+      "purpose": "Outbox lag and backlog gauges.",
+      "phase": 8,
+      "area": "operations",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/observability/ReadinessHealthIndicator.java",
+      "purpose": "Readiness dependency checks without leaking configuration.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/observability/SchedulingMetrics.java",
+      "purpose": "Availability search timing and truncation metrics.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/config/WorkerProperties.java",
+      "purpose": "Typed hold/outbox/reminder worker batch, interval and lease configuration.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/operations/config/BookingProperties.java",
+      "purpose": "Typed hold TTL, booking horizon and active-hold maximums.",
+      "phase": 8,
+      "area": "operations",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/platform/package-info.java",
+      "purpose": "Spring Modulith metadata for platform; optional allowed dependency list.",
+      "phase": 8,
+      "area": "platform",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/platform/api/PlatformOrganizationController.java",
+      "purpose": "Privileged paginated platform organization listing endpoint.",
+      "phase": 8,
+      "area": "platform",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/platform/api/TenantAuditController.java",
+      "purpose": "GET tenant audit-events; checks tenant admin audit.read permission.",
+      "phase": 8,
+      "area": "platform",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/java/com/acme/appointmentcalendar/platform/application/PlatformProvisioningService.java",
+      "purpose": "Controlled org provisioning (POST /organizations) with separate platform privilege.",
+      "phase": 8,
+      "area": "platform",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/application.yml",
+      "purpose": "Environment-agnostic datasource/JPA/security/limits/observability defaults; no secrets.",
+      "phase": 8,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/application-local.yml",
+      "purpose": "Local Keycloak/Mailpit/PostgreSQL settings, dev-only.",
+      "phase": 8,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/application-prod.yml",
+      "purpose": "Production-safe tuning, external secrets and strict transport assumptions.",
+      "phase": 13,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V001__extensions_and_global_identity.sql",
+      "purpose": "Extensions (btree_gist), user identity and app metadata bootstrap.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V002__organizations_and_memberships.sql",
+      "purpose": "Tenants, business hours, memberships, constraints and FKs.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V003__locations_staff_resources.sql",
+      "purpose": "Location/staff/resource tables and tenant-safe relationships.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V004__services_and_requirements.sql",
+      "purpose": "Service and eligible-resource requirement tables.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V005__availability_and_time_off.sql",
+      "purpose": "Recurring availability, exception and time-off tables.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V006__holds_and_appointments.sql",
+      "purpose": "Appointment and hold tables, lifecycle/history, participants and version.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V007__active_resource_reservations.sql",
+      "purpose": "ACTIVE occupancy rows, half-open tstzrange GiST exclusion constraint (CRITICAL).",
+      "phase": 9,
+      "area": "Resources",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V008__idempotency_and_audit.sql",
+      "purpose": "Scoped idempotency records and append-only audit history.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V009__outbox.sql",
+      "purpose": "Event publication state, claim leases, retry indices.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V010__notifications_and_reminders.sql",
+      "purpose": "Reminder definitions/instances, notifications and delivery attempts.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V011__query_indexes.sql",
+      "purpose": "Workload-driven indexes for availability, list and worker hot paths.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/db/migration/V012__tenant_integrity_constraints.sql",
+      "purpose": "Additional tenant composite foreign keys and integrity checks.",
+      "phase": 9,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/templates/mail/appointment-confirmed.html",
+      "purpose": "Escaped booking confirmation HTML template.",
+      "phase": 13,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/templates/mail/appointment-cancelled.html",
+      "purpose": "Escaped booking cancellation HTML template.",
+      "phase": 13,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/main/resources/templates/mail/appointment-reminder.html",
+      "purpose": "Escaped scheduled reminder HTML template.",
+      "phase": 13,
+      "area": "Resources",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/architecture/ModulithBoundaryVerificationTest.java",
+      "purpose": "ApplicationModules.verify() asserts no cycles/nonexported dependencies.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/architecture/ControllerLayerArchitectureTest.java",
+      "purpose": "ArchUnit: controller cannot directly inject repositories or persistence types.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/architecture/NoDomainSpringWebDependencyTest.java",
+      "purpose": "Domain types remain transport/framework decoupled.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/JwtValidatorIntegrationTest.java",
+      "purpose": "Bad issuer/audience/expiry/signature and correct valid JWT cases.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/AuthenticationEndpointTest.java",
+      "purpose": "401/403, cookie/CORS/security header behavior.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/TenantIsolationIntegrationTest.java",
+      "purpose": "Every tenant-owned resource refuses cross-tenant access.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/BookingObjectAuthorizationTest.java",
+      "purpose": "Customer A cannot read/change B booking; staff assignment rules.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/AdminFunctionAuthorizationTest.java",
+      "purpose": "Customer and tenant admin cannot call privileged functions.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/MassAssignmentValidationTest.java",
+      "purpose": "Unapproved mutable fields are rejected or ignored safely according to contract.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/PrivilegeRevocationTest.java",
+      "purpose": "Membership revocation effective for still-valid tokens.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/security/RedactedErrorResponseTest.java",
+      "purpose": "No SQL, stack traces or personal secrets in RFC 9457 errors.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/AppointmentStateMachineTest.java",
+      "purpose": "Allowed/forbidden lifecycle transitions and terminal states.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/BookingHoldStateMachineTest.java",
+      "purpose": "Hold ACTIVE→CONFIRMED/EXPIRED/CANCELLED invariants.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/BookingHoldExpiryRaceIT.java",
+      "purpose": "Confirmation vs expiration at expiry boundary, repeated runs.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/BookingHoldQuotaConcurrencyIT.java",
+      "purpose": "Concurrent hold requests cannot exceed per-principal limit.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/MultiResourceAtomicBookingIT.java",
+      "purpose": "Either all required resource reservations exist or none.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/NoDoubleBooking100ThreadsIT.java",
+      "purpose": "100 simultaneous attempts: 1 reservation succeeds, 99 conflicts.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": true,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/AdjacentIntervalsIT.java",
+      "purpose": "[start,end) intervals permit exact adjacency, reject 1ms overlap.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/RescheduleAtomicityIT.java",
+      "purpose": "Conflict during reschedule leaves original appointment intact.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/booking/BookingApiContractIT.java",
+      "purpose": "Create/confirm/cancel/read REST request/response contract.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/availability/AvailabilityIntervalEngineTest.java",
+      "purpose": "Weekday/exceptions/buffers/notice/horizon and boundary cases.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/availability/DaylightSavingPolicyTest.java",
+      "purpose": "UTC, Asia/Kolkata, New York and London DST gap/overlap.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/availability/AvailabilitySearchIntegrationTest.java",
+      "purpose": "Availability queries exclude active holds and booked occupancy.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/availability/AvailabilityQueryBoundariesTest.java",
+      "purpose": "Reject date range explosion, unbounded resources and huge results.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/catalog/ServiceRequirementValidationTest.java",
+      "purpose": "Cross-tenant/invalid resource eligibility rejected.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/organization/MembershipPolicyTest.java",
+      "purpose": "Role grant/revoke and last-admin protection.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/idempotency/ConcurrentIdempotencyIT.java",
+      "purpose": "Same key same body has exactly one logical mutation.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/idempotency/IdempotencyConflictIT.java",
+      "purpose": "Same key different payload returns deterministic conflict.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/idempotency/IdempotencyReplayAfterCommitIT.java",
+      "purpose": "Lost response retry replays committed result despite advanced version.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/outbox/OutboxCrashRecoveryIT.java",
+      "purpose": "Committed booking event is dispatched after worker crash/reclaim.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/outbox/OutboxClaimConcurrencyIT.java",
+      "purpose": "No simultaneous worker lease for same event.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/notification/ReminderDuplicateDeliveryIT.java",
+      "purpose": "Duplicate trigger/retry does not create multiple logical reminder notifications.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/notification/NotificationFailureRetryIT.java",
+      "purpose": "Timeout/429/5xx retry classification and final failure behavior.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/api/OpenApiOperationCoverageTest.java",
+      "purpose": "All documented operationIds mapped to routes, with known intentional exclusions.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/api/Rfc9457ContractTest.java",
+      "purpose": "Typed problem schema and safe validation errors.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/api/PaginationAndFilteringTest.java",
+      "purpose": "Authenticated bounded keyset pagination and cursor integrity.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/api/PreconditionAndEtagTest.java",
+      "purpose": "Missing/stale If-Match; concurrency and replay ordering.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/persistence/PostgresMigrationIT.java",
+      "purpose": "Flyway clean startup on PostgreSQL 18 and ddl-auto validate.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/persistence/ReservationConstraintIT.java",
+      "purpose": "Direct SQL proves partial exclusion protection and release behavior.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/persistence/CompositeTenantFkIT.java",
+      "purpose": "Rejects cross-tenant row references.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/persistence/IndexQueryPlanTest.java",
+      "purpose": "Optional EXPLAIN critical query plan assertions under seeded scale.",
+      "phase": 10,
+      "area": "Tests",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/support/PostgresIntegrationTestBase.java",
+      "purpose": "Shared Postgres Testcontainers test setup (no H2 substitution).",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/support/TestIdentityFactory.java",
+      "purpose": "Signed/mock JWT authorities and local membership fixture utilities.",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/support/TenantFixtureFactory.java",
+      "purpose": "Deterministic tenant and resource fixture creation.",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/java/com/acme/appointmentcalendar/support/ContendedBookingRunner.java",
+      "purpose": "Barriers and threads to force simultaneous booking.",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/resources/application-test.yml",
+      "purpose": "CI-safe test app config with Testcontainers-backed DB.",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/resources/testdata/booking-hold.json",
+      "purpose": "Approved request fixture for contract tests.",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    },
+    {
+      "path": "src/test/resources/testdata/appointment.json",
+      "purpose": "Approved response fixture for contract tests.",
+      "phase": 10,
+      "area": "Test Infrastructure",
+      "critical": false,
+      "status": "NOT_STARTED",
+      "notes": ""
+    }
+  ],
+  "api_routes": [
+    {
+      "method": "GET",
+      "path": "/api/v1/me",
+      "operationId": "getCurrentUser",
+      "owner": "identity/api/MeController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/me/memberships",
+      "operationId": "listMyMemberships",
+      "owner": "organization/api/MeMembershipController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations",
+      "operationId": "createOrganization",
+      "owner": "platform/api/PlatformOrganizationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}",
+      "operationId": "getOrganization",
+      "owner": "organization/api/OrganizationController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}",
+      "operationId": "updateOrganization",
+      "owner": "organization/api/OrganizationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/business-hours",
+      "operationId": "getOrganizationHours",
+      "owner": "organization/api/OrganizationController.java"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/organizations/{orgId}/business-hours",
+      "operationId": "replaceOrganizationHours",
+      "owner": "organization/api/OrganizationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/memberships",
+      "operationId": "listMemberships",
+      "owner": "organization/api/MembershipController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/memberships",
+      "operationId": "createMembership",
+      "owner": "organization/api/MembershipController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/memberships/{membershipId}",
+      "operationId": "updateMembership",
+      "owner": "organization/api/MembershipController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/memberships/{membershipId}/revoke",
+      "operationId": "revokeMembership",
+      "owner": "organization/api/MembershipController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/locations",
+      "operationId": "listLocations",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/locations",
+      "operationId": "createLocation",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/locations/{locationId}",
+      "operationId": "getLocation",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/locations/{locationId}",
+      "operationId": "updateLocation",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/locations/{locationId}/deactivate",
+      "operationId": "deactivateLocation",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/staff",
+      "operationId": "listStaff",
+      "owner": "resource/api/StaffController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/staff",
+      "operationId": "createStaffMember",
+      "owner": "resource/api/StaffController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/staff/{staffId}",
+      "operationId": "getStaffMember",
+      "owner": "resource/api/StaffController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/staff/{staffId}",
+      "operationId": "updateStaffMember",
+      "owner": "resource/api/StaffController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/staff/{staffId}/deactivate",
+      "operationId": "deactivateStaffMember",
+      "owner": "resource/api/StaffController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/resources",
+      "operationId": "listResources",
+      "owner": "resource/api/CalendarResourceController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/resources",
+      "operationId": "createResource",
+      "owner": "resource/api/CalendarResourceController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}",
+      "operationId": "getResource",
+      "owner": "resource/api/CalendarResourceController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}",
+      "operationId": "updateResource",
+      "owner": "resource/api/CalendarResourceController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/deactivate",
+      "operationId": "deactivateResource",
+      "owner": "resource/api/CalendarResourceController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/services",
+      "operationId": "listServices",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/services",
+      "operationId": "createService",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/services/{serviceId}",
+      "operationId": "getService",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/services/{serviceId}",
+      "operationId": "updateService",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/services/{serviceId}/deactivate",
+      "operationId": "deactivateService",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/locations/{locationId}/opening-hours",
+      "operationId": "getLocationOpeningHours",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/organizations/{orgId}/locations/{locationId}/opening-hours",
+      "operationId": "replaceLocationOpeningHours",
+      "owner": "resource/api/LocationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/services/{serviceId}/resource-requirements",
+      "operationId": "getServiceResourceRequirements",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "PUT",
+      "path": "/api/v1/organizations/{orgId}/services/{serviceId}/resource-requirements",
+      "operationId": "replaceServiceResourceRequirements",
+      "owner": "catalog/api/ServiceCatalogController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules",
+      "operationId": "listAvailabilityRules",
+      "owner": "availability/api/AvailabilityRuleController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules",
+      "operationId": "createAvailabilityRule",
+      "owner": "availability/api/AvailabilityRuleController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules/{ruleId}",
+      "operationId": "updateAvailabilityRule",
+      "owner": "availability/api/AvailabilityRuleController.java"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules/{ruleId}",
+      "operationId": "deleteAvailabilityRule",
+      "owner": "availability/api/AvailabilityRuleController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-exceptions",
+      "operationId": "listAvailabilityExceptions",
+      "owner": "availability/api/AvailabilityExceptionController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-exceptions",
+      "operationId": "createAvailabilityException",
+      "owner": "availability/api/AvailabilityExceptionController.java"
+    },
+    {
+      "method": "DELETE",
+      "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-exceptions/{exceptionId}",
+      "operationId": "deleteAvailabilityException",
+      "owner": "availability/api/AvailabilityExceptionController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/staff/{staffId}/time-off",
+      "operationId": "listStaffTimeOff",
+      "owner": "availability/api/StaffTimeOffController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/staff/{staffId}/time-off",
+      "operationId": "createStaffTimeOff",
+      "owner": "availability/api/StaffTimeOffController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/staff/{staffId}/time-off/{timeOffId}/cancel",
+      "operationId": "cancelStaffTimeOff",
+      "owner": "availability/api/StaffTimeOffController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/availability/search",
+      "operationId": "searchAvailability",
+      "owner": "availability/api/AvailabilitySearchController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/booking-holds",
+      "operationId": "createBookingHold",
+      "owner": "booking/api/BookingHoldController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/booking-holds/{holdId}",
+      "operationId": "getBookingHold",
+      "owner": "booking/api/BookingHoldController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/booking-holds/{holdId}/confirm",
+      "operationId": "confirmBookingHold",
+      "owner": "booking/api/BookingHoldController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/booking-holds/{holdId}/cancel",
+      "operationId": "cancelBookingHold",
+      "owner": "booking/api/BookingHoldController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/appointments",
+      "operationId": "listAppointments",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments",
+      "operationId": "createDirectBooking",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/me/appointments",
+      "operationId": "listMyAppointments",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}",
+      "operationId": "getAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/history",
+      "operationId": "getAppointmentHistory",
+      "owner": "booking/api/AppointmentHistoryController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/reschedule",
+      "operationId": "rescheduleAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/cancel",
+      "operationId": "cancelAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/check-in",
+      "operationId": "checkinAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/start",
+      "operationId": "startAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/complete",
+      "operationId": "completeAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/no-show",
+      "operationId": "noshowAppointment",
+      "owner": "booking/api/AppointmentController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/reminder-definitions",
+      "operationId": "listReminderDefinitions",
+      "owner": "notification/api/ReminderDefinitionController.java"
+    },
+    {
+      "method": "POST",
+      "path": "/api/v1/organizations/{orgId}/reminder-definitions",
+      "operationId": "createReminderDefinition",
+      "owner": "notification/api/ReminderDefinitionController.java"
+    },
+    {
+      "method": "PATCH",
+      "path": "/api/v1/organizations/{orgId}/reminder-definitions/{reminderId}",
+      "operationId": "updateReminderDefinition",
+      "owner": "notification/api/ReminderDefinitionController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/notifications",
+      "operationId": "listAppointmentNotifications",
+      "owner": "notification/api/AppointmentNotificationController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/organizations/{orgId}/audit-events",
+      "operationId": "listAuditEvents",
+      "owner": "platform/api/TenantAuditController.java"
+    },
+    {
+      "method": "GET",
+      "path": "/api/v1/platform/organizations",
+      "operationId": "listPlatformOrganizations",
+      "owner": "platform/api/PlatformOrganizationController.java"
+    }
+  ],
+  "counts": {
+    "files": 432,
+    "statuses": {
+      "NOT_STARTED": 429,
+      "GENERATED": 3
+    },
+    "phases": {
+      "8": 275,
+      "14": 44,
+      "11": 26,
+      "5": 7,
+      "12": 9,
+      "10": 55,
+      "13": 4,
+      "9": 12
+    },
+    "areas": {
+      "Root": 16,
+      "OpenAPI": 7,
+      "Documentation": 23,
+      "Architecture Decisions": 16,
+      "Deployment": 16,
+      "CI/CD": 6,
+      "Scripts": 9,
+      "Load Tests": 7,
+      "Application": 1,
+      "shared": 13,
+      "identity": 11,
+      "organization": 27,
+      "security": 13,
+      "resource": 26,
+      "catalog": 16,
+      "reservation": 12,
+      "availability": 29,
+      "idempotency": 9,
+      "audit": 12,
+      "outbox": 12,
+      "booking": 38,
+      "notification": 26,
+      "integration": 6,
+      "operations": 11,
+      "platform": 4,
+      "Resources": 18,
+      "Tests": 41,
+      "Test Infrastructure": 7
+    }
+  }
+}

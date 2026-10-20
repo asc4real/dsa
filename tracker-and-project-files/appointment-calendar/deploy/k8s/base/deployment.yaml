@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: appointment-calendar}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: appointment-calendar}}
+  template:
+    metadata: {labels: {app: appointment-calendar}}
+    spec:
+      automountServiceAccountToken: false
+      securityContext: {runAsNonRoot: true, runAsUser: 10001, seccompProfile: {type: RuntimeDefault}}
+      containers:
+        - name: api
+          image: REPLACE_WITH_PRIVATE_REGISTRY/appointment-calendar:REPLACE_WITH_IMMUTABLE_DIGEST
+          ports: [{containerPort: 8080}]
+          securityContext: {allowPrivilegeEscalation: false, readOnlyRootFilesystem: true, capabilities: {drop: [ALL]}}
+          resources:
+            requests: {cpu: 250m, memory: 512Mi}
+            limits: {cpu: '2', memory: 2Gi}
+          readinessProbe: {httpGet: {path: /actuator/health/readiness, port: 8080}, initialDelaySeconds: 15}
+          livenessProbe: {httpGet: {path: /actuator/health/liveness, port: 8080}, initialDelaySeconds: 30}
+          envFrom:
+            - secretRef: {name: appointment-calendar-secrets}

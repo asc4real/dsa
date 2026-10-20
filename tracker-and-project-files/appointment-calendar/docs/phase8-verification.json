@@ -1,0 +1,17 @@
+{
+  "date": "2026-10-20",
+  "deliverable": "Phase 8 source package through release packaging",
+  "java_source_files": 46,
+  "java_test_files": 5,
+  "operations_declared": 67,
+  "operations_with_handlers": 67,
+  "migrations": 12,
+  "yaml_json_xml_static_parse": "PASSED",
+  "java_syntax_parse": "Parsed 51 files, errors 0",
+  "maven_compile": "NOT RUN: JDK 25 and Maven unavailable",
+  "database_execution": "NOT RUN: PostgreSQL and Docker unavailable",
+  "testcontainers_execution": "NOT RUN: Docker unavailable",
+  "release_container_build": "NOT RUN: Docker unavailable",
+  "production_ready": false,
+  "known_gaps": "See README.md and docs/phase8-acceptance-matrix.md"
+}

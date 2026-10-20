@@ -1,0 +1,404 @@
+[
+  {
+    "method": "GET",
+    "path": "/api/v1/me",
+    "operationId": "getCurrentUser",
+    "tag": "Identity"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/me/memberships",
+    "operationId": "listMyMemberships",
+    "tag": "Identity"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations",
+    "operationId": "createOrganization",
+    "tag": "Organizations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}",
+    "operationId": "getOrganization",
+    "tag": "Organizations"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}",
+    "operationId": "updateOrganization",
+    "tag": "Organizations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/business-hours",
+    "operationId": "getOrganizationHours",
+    "tag": "Organizations"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/organizations/{orgId}/business-hours",
+    "operationId": "replaceOrganizationHours",
+    "tag": "Organizations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/memberships",
+    "operationId": "listMemberships",
+    "tag": "Memberships"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/memberships",
+    "operationId": "createMembership",
+    "tag": "Memberships"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/memberships/{membershipId}",
+    "operationId": "updateMembership",
+    "tag": "Memberships"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/memberships/{membershipId}/revoke",
+    "operationId": "revokeMembership",
+    "tag": "Memberships"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/locations",
+    "operationId": "listLocations",
+    "tag": "Locations"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/locations",
+    "operationId": "createLocation",
+    "tag": "Locations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/locations/{locationId}",
+    "operationId": "getLocation",
+    "tag": "Locations"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/locations/{locationId}",
+    "operationId": "updateLocation",
+    "tag": "Locations"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/locations/{locationId}/deactivate",
+    "operationId": "deactivateLocation",
+    "tag": "Locations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/staff",
+    "operationId": "listStaff",
+    "tag": "Staff"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/staff",
+    "operationId": "createStaffMember",
+    "tag": "Staff"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/staff/{staffId}",
+    "operationId": "getStaffMember",
+    "tag": "Staff"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/staff/{staffId}",
+    "operationId": "updateStaffMember",
+    "tag": "Staff"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/staff/{staffId}/deactivate",
+    "operationId": "deactivateStaffMember",
+    "tag": "Staff"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/resources",
+    "operationId": "listResources",
+    "tag": "Resources"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/resources",
+    "operationId": "createResource",
+    "tag": "Resources"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}",
+    "operationId": "getResource",
+    "tag": "Resources"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}",
+    "operationId": "updateResource",
+    "tag": "Resources"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/deactivate",
+    "operationId": "deactivateResource",
+    "tag": "Resources"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/services",
+    "operationId": "listServices",
+    "tag": "Services"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/services",
+    "operationId": "createService",
+    "tag": "Services"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/services/{serviceId}",
+    "operationId": "getService",
+    "tag": "Services"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/services/{serviceId}",
+    "operationId": "updateService",
+    "tag": "Services"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/services/{serviceId}/deactivate",
+    "operationId": "deactivateService",
+    "tag": "Services"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/locations/{locationId}/opening-hours",
+    "operationId": "getLocationOpeningHours",
+    "tag": "Locations"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/organizations/{orgId}/locations/{locationId}/opening-hours",
+    "operationId": "replaceLocationOpeningHours",
+    "tag": "Locations"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/services/{serviceId}/resource-requirements",
+    "operationId": "getServiceResourceRequirements",
+    "tag": "Services"
+  },
+  {
+    "method": "PUT",
+    "path": "/api/v1/organizations/{orgId}/services/{serviceId}/resource-requirements",
+    "operationId": "replaceServiceResourceRequirements",
+    "tag": "Services"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules",
+    "operationId": "listAvailabilityRules",
+    "tag": "Availability"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules",
+    "operationId": "createAvailabilityRule",
+    "tag": "Availability"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules/{ruleId}",
+    "operationId": "updateAvailabilityRule",
+    "tag": "Availability"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-rules/{ruleId}",
+    "operationId": "deleteAvailabilityRule",
+    "tag": "Availability"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-exceptions",
+    "operationId": "listAvailabilityExceptions",
+    "tag": "Availability"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-exceptions",
+    "operationId": "createAvailabilityException",
+    "tag": "Availability"
+  },
+  {
+    "method": "DELETE",
+    "path": "/api/v1/organizations/{orgId}/resources/{resourceId}/availability-exceptions/{exceptionId}",
+    "operationId": "deleteAvailabilityException",
+    "tag": "Availability"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/staff/{staffId}/time-off",
+    "operationId": "listStaffTimeOff",
+    "tag": "Availability"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/staff/{staffId}/time-off",
+    "operationId": "createStaffTimeOff",
+    "tag": "Availability"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/staff/{staffId}/time-off/{timeOffId}/cancel",
+    "operationId": "cancelStaffTimeOff",
+    "tag": "Availability"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/availability/search",
+    "operationId": "searchAvailability",
+    "tag": "Availability"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/booking-holds",
+    "operationId": "createBookingHold",
+    "tag": "BookingHolds"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/booking-holds/{holdId}",
+    "operationId": "getBookingHold",
+    "tag": "BookingHolds"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/booking-holds/{holdId}/confirm",
+    "operationId": "confirmBookingHold",
+    "tag": "BookingHolds"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/booking-holds/{holdId}/cancel",
+    "operationId": "cancelBookingHold",
+    "tag": "BookingHolds"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/appointments",
+    "operationId": "listAppointments",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments",
+    "operationId": "createDirectBooking",
+    "tag": "Appointments"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/me/appointments",
+    "operationId": "listMyAppointments",
+    "tag": "Appointments"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}",
+    "operationId": "getAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/history",
+    "operationId": "getAppointmentHistory",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/reschedule",
+    "operationId": "rescheduleAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/cancel",
+    "operationId": "cancelAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/check-in",
+    "operationId": "checkinAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/start",
+    "operationId": "startAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/complete",
+    "operationId": "completeAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/no-show",
+    "operationId": "noshowAppointment",
+    "tag": "Appointments"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/reminder-definitions",
+    "operationId": "listReminderDefinitions",
+    "tag": "Notifications"
+  },
+  {
+    "method": "POST",
+    "path": "/api/v1/organizations/{orgId}/reminder-definitions",
+    "operationId": "createReminderDefinition",
+    "tag": "Notifications"
+  },
+  {
+    "method": "PATCH",
+    "path": "/api/v1/organizations/{orgId}/reminder-definitions/{reminderId}",
+    "operationId": "updateReminderDefinition",
+    "tag": "Notifications"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/appointments/{appointmentId}/notifications",
+    "operationId": "listAppointmentNotifications",
+    "tag": "Notifications"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/organizations/{orgId}/audit-events",
+    "operationId": "listAuditEvents",
+    "tag": "Audit"
+  },
+  {
+    "method": "GET",
+    "path": "/api/v1/platform/organizations",
+    "operationId": "listPlatformOrganizations",
+    "tag": "Platform"
+  }
+]

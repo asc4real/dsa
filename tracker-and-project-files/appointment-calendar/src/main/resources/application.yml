@@ -1,0 +1,57 @@
+server:
+  port: ${PORT:8080}
+  shutdown: graceful
+spring:
+  application:
+    name: appointment-calendar
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/appointments}
+    username: ${DB_USER:appointments}
+    password: ${DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: ${DB_POOL_SIZE:15}
+  flyway:
+    enabled: ${FLYWAY_ENABLED:true}
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${OIDC_ISSUER_URI:http://localhost:8081/realms/appointments}
+          audiences: ${OIDC_AUDIENCE:appointment-calendar-api}
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: true
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:1025}
+    username: ${SMTP_USERNAME:}
+    password: ${SMTP_PASSWORD:}
+    properties:
+      mail.smtp.auth: ${SMTP_AUTH:false}
+      mail.smtp.starttls.enable: ${SMTP_STARTTLS:false}
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,prometheus
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  tracing:
+    sampling:
+      probability: ${TRACING_SAMPLE_PROBABILITY:0.1}
+  otlp:
+    tracing:
+      endpoint: ${OTLP_TRACES_ENDPOINT:http://localhost:4318/v1/traces}
+app:
+  pagination:
+    secret: ${CURSOR_SIGNING_SECRET:}
+  hold-ttl-seconds: ${HOLD_TTL_SECONDS:300}
+  worker:
+    enabled: ${WORKERS_ENABLED:true}
+  idempotency:
+    retention-hours: 72
+  mail:
+    enabled: ${EMAIL_ENABLED:false}
+    from: ${EMAIL_FROM:no-reply@example.invalid}
